@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 
 DATABASES = {
-    'pg': {
+    'pgdb': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'bdii', 
         'USER': 'postgres',
@@ -91,7 +91,7 @@ DATABASES = {
         'HOST': '127.0.0.1', 
         'PORT': '5432',
     },
-    'mg': {
+    'mgdb': {
         'ENGINE': 'djongo',
         'NAME': 'bdii',  
         'HOST' : 'mongodb://localhost:27017/',
