@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'bdii', 
         'USER': 'postgres',
-        'PASSWORD': PASS,
+        'PASSWORD': PASS, # mudar a variavel no ficheiro password
         'HOST': '127.0.0.1', 
         'PORT': '5432',
     },
