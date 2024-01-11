@@ -85,6 +85,9 @@ DATABASES = {
         'HOST' : 'mongodb://localhost:27017/',
         'PORT' : '27017',
         'ENFORCE_SCHEMA': False,  
+    },
+    'default': {
+
     }
 }
 
