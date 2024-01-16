@@ -1,5 +1,6 @@
 from pathlib import Path
 from db_password import PASS
+from constants import DATABASE_PG, DATABASE_MG
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,6 +21,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,7 +73,7 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 
 DATABASES = {
-    'pgdb': {
+    DATABASE_PG: {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'bdii', 
         'USER': 'postgres',
@@ -79,7 +81,7 @@ DATABASES = {
         'HOST': '127.0.0.1', 
         'PORT': '5432',
     },
-    'mgdb': {
+    DATABASE_MG: {
         'ENGINE': 'djongo',
         'NAME': 'bdii',  
         'HOST' : 'mongodb://localhost:27017/',
