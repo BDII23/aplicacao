@@ -1,10 +1,11 @@
+<!-- historico_compras_cliente.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <title>Sua Página</title>
+  <title>Historico de Compras</title>
   <style>
     .btn-container {
       display: flex;
@@ -15,130 +16,35 @@
 <body>
   <div class="container">
     <h1>Historico de Compras</h1>
-    <p><strong>Cliente:</strong> João Santos</p>
-    <p><strong>Telefone:</strong> (11) 1234-5678</p>
-    <p><strong>Morada:</strong> Rua das Flores, 123</p>
+    <p><strong>Cliente:</strong> {{ cliente_info.nome }}</p>
+    <p><strong>Telefone:</strong> {{ cliente_info.telefone }}</p>
+    <p><strong>Morada:</strong> {{ cliente_info.morada }}</p>
     
     <table class="table table-bordered">
-      <tr> <!--Primeira linha-->
-        <td>
-            <h5>ID</h5> 
-        </td>
-        <td>
-            <h5>Data</h5> 
-        </td>
-        <td>
-            <h5>Equipamentos</h5> 
-        </td>
-        <td>
-            <h5>Valor Total</h5> 
-        </td>
-        <td>
-            <h5>Tipo de compra</h5> 
-        </td>
-        <td>
-            <h5>Fatura</h5> 
-        </td>
-        <td>
-            <h5>Ações</h5> 
-        </td>
-      </tr><!--Fim da Primeira linha-->
       <tr>
-        <td>
-            <p>1</p>
-        </td>
-        <td>
-            <p>01/09/2023</p>
-        </td>
-        <td>
-            <p>IDEquipamento</p>
-        </td>
-        <td>
-            <p>20€</p>
-        </td>
-        <td>
-            <p>Entrega</p>
-        </td>
-        <td>
-            <p>Link</p>
-        </td>
+        <td><h5>ID</h5></td>
+        <td><h5>Data</h5></td>
+        <td><h5>Equipamentos</h5></td>
+        <td><h5>Valor Total</h5></td>
+        <td><h5>Tipo de compra</h5></td>
+        <td><h5>Fatura</h5></td>
+        <td><h5>Ações</h5></td>
+      </tr>
+
+      {% for compra in historico_compras %}
+      <tr>
+        <td><p>{{ compra.id }}</p></td>
+        <td><p>{{ compra.data }}</p></td>
+        <td><p>{{ compra.equipamento }}</p></td>
+        <td><p>{{ compra.valor_total }}</p></td>
+        <td><p>{{ compra.tipo_compra }}</p></td>
+        <td><p>{{ compra.fatura }}</p></td>
         <td class="btn-container">
-            <button class="btn btn-primary">Editar</button>
-            <button class="btn btn-danger">Eliminar</button>
+          <button class="btn btn-primary">Editar</button>
+          <button class="btn btn-danger">Eliminar</button>
         </td>
       </tr>
-      <tr>
-        <td>
-            <p>11</p>
-        </td>
-        <td>
-            <p>01/09/2023</p>
-        </td>
-        <td>
-            <p>IDEquipamento</p>
-        </td>
-        <td>
-            <p>20€</p>
-        </td>
-        <td>
-            <p>Entrega</p>
-        </td>
-        <td>
-            <p>Link</p>
-        </td>
-        <td class="btn-container">
-            <button class="btn btn-primary">Editar</button>
-            <button class="btn btn-danger">Eliminar</button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-            <p>2</p>
-        </td>
-        <td>
-            <p>01/09/2023</p>
-        </td>
-        <td>
-            <p>IDEquipamento</p>
-        </td>
-        <td>
-            <p>20€</p>
-        </td>
-        <td>
-            <p>Entrega</p>
-        </td>
-        <td>
-            <p>Link</p>
-        </td>
-        <td class="btn-container">
-            <button class="btn btn-primary">Editar</button>
-            <button class="btn btn-danger">Eliminar</button>
-        </td>
-      </tr>
-      <tr>
-        <td>
-            <p>3</p>
-        </td>
-        <td>
-            <p>01/09/2023</p>
-        </td>
-        <td>
-            <p>IDEquipamento</p>
-        </td>
-        <td>
-            <p>20€</p>
-        </td>
-        <td>
-            <p>Entrega</p>
-        </td>
-        <td>
-            <p>Link</p>
-        </td>
-        <td class="btn-container">
-            <button class="btn btn-primary">Editar</button>
-            <button class="btn btn-danger">Eliminar</button>
-        </td>
-      </tr>
+      {% endfor %}
     </table>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

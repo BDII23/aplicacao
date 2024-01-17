@@ -6,4 +6,5 @@ urlpatterns = [
     path('componentes/listar', views.componentes_listar, name='componentes_listar'),
     path('componentes/registrar', views.componentes_registrar, name='componentes_registrar'),
     path('componentes/atualizar', views.componentes_atualizar, name='componentes_atualizar'),
+    path('compras/listar', views.compras_historico_listar, name='historico_compras_listar'),
 ]
