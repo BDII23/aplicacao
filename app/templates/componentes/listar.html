@@ -20,6 +20,7 @@
         <thead>
           <tr>
             <th>ID</th>
+            <th>Data Criação</th>
             <th>Descrição</th>
             <th>Quantidade</th>
             <th>Tipo</th>
@@ -30,10 +31,11 @@
           {% for componente in componentes %}
           <tr>
             <td>{{ componente.id }}</td>
+            <td>{{ componente.data_criacao }}</td>
             <td>{{ componente.descricao }}</td>
             <td>{{ componente.quantidade }}</td>
-            <td>{{ componente.tipo.tipo }}</td>
-            <td>{{ componente.armazem.endereco }}</td>
+            <td>{{ componente.tipo_id }}</td>
+            <td>{{ componente.armazem_id }}</td>
           </tr>
           {% endfor %}
         </tbody>

@@ -18,9 +18,8 @@ def experimentos(request):
 
 def componentes_listar(request):
     try:
-        componentes = fn_read_componente()
-        print("Detalhes da Encomenda do Fornecedor: %s", componentes)
-
+        componentes = fn_read_componente_json()
+        print(componentes)
         return render(request, 'componentes/listar.html', {'componentes': componentes})
         
     except Exception as e:
