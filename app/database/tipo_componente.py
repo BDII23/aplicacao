@@ -1,4 +1,4 @@
-from django.db import connections
+from db_manager import get_pg_cursor
 
 def sp_create_tipo_componente(p_tipo):
     with get_pg_cursor() as cursor:

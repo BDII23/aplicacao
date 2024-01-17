@@ -1,4 +1,4 @@
-from django.db import connections
+from db_manager import get_pg_cursor
 
 def create_fornecedor(p_nome, p_nif, p_email, p_telefone, p_endereco):
     with get_pg_cursor() as cursor:

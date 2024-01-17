@@ -1,4 +1,4 @@
-from django.db import connections
+from db_manager import get_pg_cursor
 
 def sp_create_guia_remessa_fornecedor(
     p_data_envio,
@@ -9,7 +9,7 @@ def sp_create_guia_remessa_fornecedor(
     p_detalhe_encomenda_id,
     p_utilizador_id
 ):
-    with connections['pgdb'].cursor() as cursor:
+    with get_pg_cursor() as cursor:
         cursor.callproc(
             'sp_create_guia_remessa_fornecedor',
             [
@@ -33,7 +33,7 @@ def sp_update_guia_remessa_fornecedor(
     p_detalhe_encomenda_id,
     p_utilizador_id
 ):
-    with connections['pgdb'].cursor() as cursor:
+    with get_pg_cursor() as cursor:
         cursor.callproc(
             'sp_update_guia_remessa_fornecedor',
             [
@@ -49,15 +49,15 @@ def sp_update_guia_remessa_fornecedor(
         )
 
 def sp_delete_guia_remessa_fornecedor(p_id):
-    with connections['pgdb'].cursor() as cursor:
+    with get_pg_cursor() as cursor:
         cursor.callproc('sp_delete_guia_remessa_fornecedor', [p_id])
 
 def fn_read_guia_remessa_fornecedor():
-    with connections['pgdb'].cursor() as cursor:
+    with get_pg_cursor() as cursor:
         cursor.callproc('fn_read_guia_remessa_fornecedor')
         return cursor.fetchall()
 
 def fn_readone_guia_remessa_fornecedor(p_id):
-    with connections['pgdb'].cursor() as cursor:
+    with get_pg_cursor() as cursor:
         cursor.callproc('fn_readone_guia_remessa_fornecedor', [p_id])
         return cursor.fetchall()

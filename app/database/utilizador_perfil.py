@@ -1,5 +1,4 @@
-from django.db import connection
-from db_manager import get_pg_cursor  # Certifique-se de ter essa função definida no seu código
+from db_manager import get_pg_cursor
 
 def sp_create_utilizador_perfil(p_perfil):
     with get_pg_cursor() as cursor:

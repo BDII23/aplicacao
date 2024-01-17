@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .database.detalhe_encomenda_fornecedor import fn_read_detalhe_encomenda_fornecedor
+from .database.detalhe_encomenda_fornecedor import *
+from .database.componente import *
 import logging
 
 logger = logging.getLogger(__name__)
@@ -8,13 +9,39 @@ logger = logging.getLogger(__name__)
 def experimentos(request):
     try:
         detalhes_encomenda = fn_read_detalhe_encomenda_fornecedor()
-        if detalhes_encomenda:
-            logger.info("Detalhes da Encomenda do Fornecedor: %s", detalhes_encomenda)
-        else:
-            print("Não há detalhes de encomenda para fornecedor disponíveis.")
+        print("Detalhes da Encomenda do Fornecedor: %s", detalhes_encomenda)
 
         return render(request, 'componentes/componentes_encomenda.html', {'detalhes_encomenda': detalhes_encomenda})
         
     except Exception as e:
-        print("fodeu")
+        return HttpResponse(e)
+
+def componentes_listar(request):
+    try:
+        componentes = fn_read_componente()
+        print("Detalhes da Encomenda do Fornecedor: %s", componentes)
+
+        return render(request, 'componentes/listar.html', {'componentes': componentes})
+        
+    except Exception as e:
+        return HttpResponse(e)
+
+def componentes_registrar(request):
+    try:
+        componentes = sp_create_componente()
+        print("Detalhes da Encomenda do Fornecedor: %s", componentes)
+
+        return render(request, 'componentes/listar.html', {'componentes': componentes})
+        
+    except Exception as e:
+        return HttpResponse(e)
+    
+def componentes_atualizar(request):
+    try:
+        componentes = sp_update_componente()
+        print("Detalhes da Encomenda do Fornecedor: %s", componentes)
+
+        return render(request, 'componentes/atualizar.html', {'componentes': componentes})
+        
+    except Exception as e:
         return HttpResponse(e)

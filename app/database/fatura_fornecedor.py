@@ -1,4 +1,4 @@
-from django.db import connection
+from db_manager import get_pg_cursor
 
 def delete_fatura_fornecedor(p_id):
     with get_pg_cursor() as cursor:

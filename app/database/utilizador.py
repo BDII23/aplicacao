@@ -1,4 +1,4 @@
-from django.db import connections
+from db_manager import get_pg_cursor
 
 def sp_create_utilizador(p_email, p_senha, p_nome, p_sobrenome, p_perfil_id):
     with get_pg_cursor() as cursor:
