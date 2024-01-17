@@ -77,20 +77,18 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'bdii', 
         'USER': 'postgres',
-        'PASSWORD': PASS, # mudar a variavel no ficheiro password
-        'HOST': '127.0.0.1', 
-        'PORT': '5432',
+        'PASSWORD': PASS,
+        'HOST': 'localhost', 
+        'PORT': 5433,
     },
     DATABASE_MG: {
         'ENGINE': 'djongo',
         'NAME': 'bdii',  
         'HOST' : 'mongodb://localhost:27017/',
-        'PORT' : '27017',
+        'PORT' : 27017,
         'ENFORCE_SCHEMA': False,  
     },
-    'default': {
-
-    }
+    'default': {}
 }
 
 
