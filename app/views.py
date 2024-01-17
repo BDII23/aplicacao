@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 def experimentos(request):
     try:
-        detalhes_encomenda = fn_read_detalhe_encomenda_fornecedor()
+        detalhes_encomenda = read_detalhe_encomenda_fornecedor()
         print("Detalhes da Encomenda do Fornecedor: %s", detalhes_encomenda)
 
         return render(request, 'componentes/componentes_encomenda.html', {'detalhes_encomenda': detalhes_encomenda})
@@ -18,7 +18,7 @@ def experimentos(request):
 
 def componentes_listar(request):
     try:
-        componentes = fn_read_componente_json()
+        componentes = readjson_componente()
         print(componentes)
         return render(request, 'componentes/listar.html', {'componentes': componentes})
         
@@ -27,7 +27,7 @@ def componentes_listar(request):
 
 def componentes_registrar(request):
     try:
-        componentes = sp_create_componente()
+        componentes = create_componente()
         print("Detalhes da Encomenda do Fornecedor: %s", componentes)
 
         return render(request, 'componentes/listar.html', {'componentes': componentes})
@@ -37,7 +37,7 @@ def componentes_registrar(request):
     
 def componentes_atualizar(request):
     try:
-        componentes = sp_update_componente()
+        componentes = update_componente()
         print("Detalhes da Encomenda do Fornecedor: %s", componentes)
 
         return render(request, 'componentes/atualizar.html', {'componentes': componentes})

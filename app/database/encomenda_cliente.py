@@ -1,24 +1,29 @@
-from django.db import connections
 from db_manager import get_pg_cursor
+from ..utils import listToJson
 
-def sp_delete_encomenda_cliente(p_id):
+def delete_encomenda_cliente(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_delete_encomenda_cliente', [p_id])
+        cursor.callproc('delete_encomenda_cliente', [p_id])
 
-def sp_create_encomenda_cliente(p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id):
+def create_encomenda_cliente(p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_create_encomenda_cliente', [p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id])
+        cursor.callproc('create_encomenda_cliente', [p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id])
 
-def sp_update_encomenda_cliente(p_id, p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id):
+def update_encomenda_cliente(p_id, p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_update_encomenda_cliente', [p_id, p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id])
+        cursor.callproc('update_encomenda_cliente', [p_id, p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id])
 
-def fn_read_encomenda_cliente():
+def read_encomenda_cliente():
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_read_encomenda_cliente')
+        cursor.callproc('read_encomenda_cliente')
         return cursor.fetchall()
 
-def fn_readOne_encomenda_cliente(p_id):
+def readOne_encomenda_cliente(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_readOne_encomenda_cliente', [p_id])
+        cursor.callproc('readone_encomenda_cliente', [p_id])
         return cursor.fetchall()
+
+def readjson_encomenda_cliente():
+    with get_pg_cursor() as cursor:
+        cursor.callproc('readjson_encomenda_cliente')
+        return listToJson(cursor.fetchall())

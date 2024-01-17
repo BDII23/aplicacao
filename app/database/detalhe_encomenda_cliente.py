@@ -1,23 +1,29 @@
 from .db_manager import get_pg_cursor
+from ..utils import listToJson
 
-def sp_delete_detalhe_encomenda_cliente(_id):
+def delete_detalhe_encomenda_cliente(_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_delete_detalhe_encomenda_cliente', [_id])
+        cursor.callproc('delete_detalhe_encomenda_cliente', [_id])
 
-def sp_create_detalhe_encomenda_cliente(_quantidade, _custo_unidade, _equipamento_id, _encomenda_id):
+def create_detalhe_encomenda_cliente(_quantidade, _custo_unidade, _equipamento_id, _encomenda_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_create_detalhe_encomenda_cliente', [_quantidade, _custo_unidade, _equipamento_id, _encomenda_id])
+        cursor.callproc('create_detalhe_encomenda_cliente', [_quantidade, _custo_unidade, _equipamento_id, _encomenda_id])
 
-def sp_update_detalhe_encomenda_cliente(_id, _quantidade, _custo_unidade, _equipamento_id, _encomenda_id):
+def update_detalhe_encomenda_cliente(_id, _quantidade, _custo_unidade, _equipamento_id, _encomenda_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_update_detalhe_encomenda_cliente', [_id, _quantidade, _custo_unidade, _equipamento_id, _encomenda_id])
+        cursor.callproc('update_detalhe_encomenda_cliente', [_id, _quantidade, _custo_unidade, _equipamento_id, _encomenda_id])
 
-def fn_read_detalhe_encomenda_cliente():
+def read_detalhe_encomenda_cliente():
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_read_detalhe_encomenda_cliente')
+        cursor.callproc('read_detalhe_encomenda_cliente')
         return cursor.fetchall()
 
-def fn_readone_detalhe_encomenda_cliente(_id):
+def readone_detalhe_encomenda_cliente(_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_readone_detalhe_encomenda_cliente', [_id])
+        cursor.callproc('readone_detalhe_encomenda_cliente', [_id])
         return cursor.fetchall()
+
+def readjson_detalhe_encomenda_cliente():
+    with get_pg_cursor() as cursor:
+        cursor.callproc('readjson_detalhe_encomenda_cliente')
+        return listToJson(cursor.fetchall())

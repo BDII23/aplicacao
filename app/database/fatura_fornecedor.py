@@ -1,4 +1,5 @@
 from db_manager import get_pg_cursor
+from ..utils import listToJson
 
 def delete_fatura_fornecedor(p_id):
     with get_pg_cursor() as cursor:
@@ -17,7 +18,12 @@ def read_fatura_fornecedor():
         cursor.callproc('read_fatura_fornecedor')
         return cursor.fetchall()
 
-def read_one_fatura_fornecedor(p_id):
+def readone_fatura_fornecedor(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('read_one_fatura_fornecedor', [p_id])
+        cursor.callproc('readone_fatura_fornecedor', [p_id])
         return cursor.fetchall()
+
+def readjson_fatura_fornecedor():
+    with get_pg_cursor() as cursor:
+        cursor.callproc('readjson_fatura_fornecedor')
+        return listToJson(cursor.fetchall())

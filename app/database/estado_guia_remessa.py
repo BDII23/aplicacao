@@ -1,23 +1,29 @@
 from db_manager import get_pg_cursor
+from ..utils import listToJson
 
-def sp_delete_estado_guia_remessa(p_id):
+def delete_estado_guia_remessa(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_delete_estado_guia_remessa', [p_id])
+        cursor.callproc('delete_estado_guia_remessa', [p_id])
 
-def sp_create_estado_guia_remessa(p_estado):
+def create_estado_guia_remessa(p_estado):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_create_estado_guia_remessa', [p_estado])
+        cursor.callproc('create_estado_guia_remessa', [p_estado])
 
-def sp_update_estado_guia_remessa(p_id, p_estado):
+def update_estado_guia_remessa(p_id, p_estado):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_update_estado_guia_remessa', [p_id, p_estado])
+        cursor.callproc('update_estado_guia_remessa', [p_id, p_estado])
 
-def fn_read_estado_guia_remessa():
+def read_estado_guia_remessa():
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_read_estado_guia_remessa')
+        cursor.callproc('read_estado_guia_remessa')
         return cursor.fetchall()
 
-def fn_readone_estado_guia_remessa(p_id):
+def readone_estado_guia_remessa(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_readone_estado_guia_remessa', [p_id])
+        cursor.callproc('readone_estado_guia_remessa', [p_id])
         return cursor.fetchall()
+
+def readjson_estado_guia_remessa():
+    with get_pg_cursor() as cursor:
+        cursor.callproc('readjson_estado_guia_remessa')
+        return listToJson(cursor.fetchall())

@@ -1,29 +1,29 @@
 from db_manager import get_pg_cursor
+from ..utils import listToJson
 
-def sp_create_guia_remessa_cliente(p_data_envio, p_data_entrega, p_endereco_origem,
-                                   p_endereco_chegada, p_estado_id, p_detalhe_encomenda_id, p_utilizador_id):
+def create_guia_remessa_cliente(p_data_envio, p_data_entrega, p_endereco_origem, p_endereco_chegada, p_estado_id, p_detalhe_encomenda_id, p_utilizador_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_create_guia_remessa_cliente', [p_data_envio, p_data_entrega, p_endereco_origem,
-                                                           p_endereco_chegada, p_estado_id, p_detalhe_encomenda_id,
-                                                           p_utilizador_id])
+        cursor.callproc('create_guia_remessa_cliente', [p_data_envio, p_data_entrega, p_endereco_origem, p_endereco_chegada, p_estado_id, p_detalhe_encomenda_id, p_utilizador_id])
 
-def sp_update_guia_remessa_cliente(p_id, p_data_envio, p_data_entrega, p_endereco_origem,
-                                   p_endereco_chegada, p_estado_id, p_detalhe_encomenda_id, p_utilizador_id):
+def update_guia_remessa_cliente(p_id, p_data_envio, p_data_entrega, p_endereco_origem, p_endereco_chegada, p_estado_id, p_detalhe_encomenda_id, p_utilizador_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_update_guia_remessa_cliente', [p_id, p_data_envio, p_data_entrega, p_endereco_origem,
-                                                           p_endereco_chegada, p_estado_id, p_detalhe_encomenda_id,
-                                                           p_utilizador_id])
+        cursor.callproc('update_guia_remessa_cliente', [p_id, p_data_envio, p_data_entrega, p_endereco_origem,p_endereco_chegada, p_estado_id, p_detalhe_encomenda_id, p_utilizador_id])
 
-def sp_delete_guia_remessa_cliente(p_id):
+def delete_guia_remessa_cliente(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_delete_guia_remessa_cliente', [p_id])
+        cursor.callproc('delete_guia_remessa_cliente', [p_id])
 
-def fn_read_guia_remessa_cliente():
+def read_guia_remessa_cliente():
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_read_guia_remessa_cliente')
+        cursor.callproc('read_guia_remessa_cliente')
         return cursor.fetchall()
 
-def fn_read_one_guia_remessa_cliente(p_id):
+def read_one_guia_remessa_cliente(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_read_one_guia_remessa_cliente', [p_id])
+        cursor.callproc('read_one_guia_remessa_cliente', [p_id])
         return cursor.fetchone()
+
+def readjson_guia_remessa_cliente():
+    with get_pg_cursor() as cursor:
+        cursor.callproc('readjson_guia_remessa_cliente')
+        return listToJson(cursor.fetchall())

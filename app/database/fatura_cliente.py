@@ -1,23 +1,29 @@
 from db_manager import get_pg_cursor
+from ..utils import listToJson
 
-def sp_delete_fatura_cliente(p_id):
+def delete_fatura_cliente(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_delete_fatura_cliente', [p_id])
+        cursor.callproc('delete_fatura_cliente', [p_id])
 
-def sp_create_fatura_cliente(p_descricao):
+def create_fatura_cliente(p_descricao):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_create_fatura_cliente', [p_descricao])
+        cursor.callproc('create_fatura_cliente', [p_descricao])
 
-def sp_update_fatura_cliente(p_id, p_descricao):
+def update_fatura_cliente(p_id, p_descricao):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_update_fatura_cliente', [p_id, p_descricao])
+        cursor.callproc('update_fatura_cliente', [p_id, p_descricao])
 
-def fn_read_fatura_cliente():
+def read_fatura_cliente():
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_read_fatura_cliente')
+        cursor.callproc('read_fatura_cliente')
         return cursor.fetchall()
 
-def fn_readone_fatura_cliente(p_id):
+def readone_fatura_cliente(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_readone_fatura_cliente', [p_id])
+        cursor.callproc('readone_fatura_cliente', [p_id])
         return cursor.fetchall()
+
+def readjson_fatura_cliente():
+    with get_pg_cursor() as cursor:
+        cursor.callproc('readjson_fatura_cliente')
+        return listToJson(cursor.fetchall())

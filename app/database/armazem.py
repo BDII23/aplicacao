@@ -1,23 +1,29 @@
 from .db_manager import get_pg_cursor
+from ..utils import listToJson
 
-def sp_create_armazem(p_endereco):
+def create_armazem(p_endereco):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_create_armazem', [p_endereco])
+        cursor.callproc('create_armazem', [p_endereco])
 
-def sp_update_armazem(p_id, p_endereco):
+def update_armazem(p_id, p_endereco):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_update_armazem', [p_id, p_endereco])
+        cursor.callproc('update_armazem', [p_id, p_endereco])
 
-def sp_delete_armazem(p_id):
+def delete_armazem(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_delete_armazem', [p_id])
+        cursor.callproc('delete_armazem', [p_id])
 
-def fn_read_armazem():
+def read_armazem():
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_read_armazem')
+        cursor.callproc('read_armazem')
         return cursor.fetchall()
 
-def fn_readone_armazem(p_id):
+def readone_armazem(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_readone_armazem', [p_id])
+        cursor.callproc('readone_armazem', [p_id])
         return cursor.fetchall()
+
+def readjson_armazem():
+    with get_pg_cursor() as cursor:
+        cursor.callproc('readjson_armazem')
+        return listToJson(cursor.fetchall())

@@ -1,23 +1,29 @@
 from db_manager import get_pg_cursor
+from ..utils import listToJson
 
-def sp_create_utilizador_perfil(p_perfil):
+def create_utilizador_perfil(p_perfil):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_create_utilizador_perfil', [p_perfil])
+        cursor.callproc('create_utilizador_perfil', [p_perfil])
 
-def sp_update_utilizador_perfil(p_id, p_perfil):
+def update_utilizador_perfil(p_id, p_perfil):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_update_utilizador_perfil', [p_id, p_perfil])
+        cursor.callproc('update_utilizador_perfil', [p_id, p_perfil])
 
-def sp_delete_utilizador_perfil(p_id):
+def delete_utilizador_perfil(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_delete_utilizador_perfil', [p_id])
+        cursor.callproc('delete_utilizador_perfil', [p_id])
 
-def fn_read_utilizador_perfil():
+def read_utilizador_perfil():
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_read_utilizador_perfil')
+        cursor.callproc('read_utilizador_perfil')
         return cursor.fetchall()
 
-def fn_readone_utilizador_perfil(p_id):
+def readone_utilizador_perfil(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_readone_utilizador_perfil', [p_id])
+        cursor.callproc('readone_utilizador_perfil', [p_id])
         return cursor.fetchall()
+
+def readjson_utilizador_perfil():
+    with get_pg_cursor() as cursor:
+        cursor.callproc('readjson_utilizador_perfil')
+        return listToJson(cursor.fetchall())

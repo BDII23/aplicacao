@@ -1,23 +1,29 @@
 from db_manager import get_pg_cursor
+from ..utils import listToJson
 
-def sp_delete_tipo_mao_obra(p_id):
+def delete_tipo_mao_obra(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_delete_tipo_mao_obra', [p_id])
+        cursor.callproc('delete_tipo_mao_obra', [p_id])
 
-def sp_create_tipo_mao_obra(p_tipo, p_custo):
+def create_tipo_mao_obra(p_tipo, p_custo):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_create_tipo_mao_obra', [p_tipo, p_custo])
+        cursor.callproc('create_tipo_mao_obra', [p_tipo, p_custo])
 
-def sp_update_tipo_mao_obra(p_id, p_tipo, p_custo):
+def update_tipo_mao_obra(p_id, p_tipo, p_custo):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_update_tipo_mao_obra', [p_id, p_tipo, p_custo])
+        cursor.callproc('update_tipo_mao_obra', [p_id, p_tipo, p_custo])
 
-def fn_read_tipo_mao_obra():
+def read_tipo_mao_obra():
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_read_tipo_mao_obra')
+        cursor.callproc('read_tipo_mao_obra')
         return cursor.fetchall()
 
-def fn_readone_tipo_mao_obra(p_id):
+def readone_tipo_mao_obra(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_readone_tipo_mao_obra', [p_id])
+        cursor.callproc('readone_tipo_mao_obra', [p_id])
         return cursor.fetchall()
+
+def readjson_tipo_mao_obra():
+    with get_pg_cursor() as cursor:
+        cursor.callproc('readjson_tipo_mao_obra')
+        return listToJson(cursor.fetchall())

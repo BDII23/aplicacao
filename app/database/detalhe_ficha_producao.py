@@ -1,24 +1,30 @@
 from django.db import connection
 from db_manager import get_pg_cursor
+from ..utils import listToJson
 
-def sp_delete_detalhe_ficha_producao(detalhe_id):
+def delete_detalhe_ficha_producao(detalhe_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_delete_detalhe_ficha_producao', [detalhe_id])
+        cursor.callproc('delete_detalhe_ficha_producao', [detalhe_id])
 
-def sp_create_detalhe_ficha_producao(p_descricao, p_componente_id):
+def create_detalhe_ficha_producao(p_descricao, p_componente_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_create_detalhe_ficha_producao', [p_descricao, p_componente_id])
+        cursor.callproc('create_detalhe_ficha_producao', [p_descricao, p_componente_id])
 
-def sp_update_detalhe_ficha_producao(p_detalhe_id, p_descricao, p_componente_id):
+def update_detalhe_ficha_producao(p_detalhe_id, p_descricao, p_componente_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_update_detalhe_ficha_producao', [p_detalhe_id, p_descricao, p_componente_id])
+        cursor.callproc('update_detalhe_ficha_producao', [p_detalhe_id, p_descricao, p_componente_id])
 
-def fn_read_detalhe_ficha_producao():
+def read_detalhe_ficha_producao():
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_read_detalhe_ficha_producao')
+        cursor.callproc('read_detalhe_ficha_producao')
         return cursor.fetchall()
 
-def fn_readone_detalhe_ficha_producao(p_detalhe_id):
+def readone_detalhe_ficha_producao(p_detalhe_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_readone_detalhe_ficha_producao', [p_detalhe_id])
+        cursor.callproc('readone_detalhe_ficha_producao', [p_detalhe_id])
         return cursor.fetchall()
+
+def readjson_detalhe_ficha_producao():
+    with get_pg_cursor() as cursor:
+        cursor.callproc('readjson_detalhe_ficha_producao')
+        return listToJson(cursor.fetchall())

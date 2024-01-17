@@ -1,23 +1,29 @@
 from db_manager import get_pg_cursor
+from ..utils import listToJson
 
-def sp_create_equipamento(in_descricao, in_tipo_id):
+def create_equipamento(in_descricao, in_tipo_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_create_equipamento', [in_descricao, in_tipo_id])
+        cursor.callproc('create_equipamento', [in_descricao, in_tipo_id])
 
-def sp_update_equipamento(in_id, in_descricao, in_tipo_id):
+def update_equipamento(in_id, in_descricao, in_tipo_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_update_equipamento', [in_id, in_descricao, in_tipo_id])
+        cursor.callproc('update_equipamento', [in_id, in_descricao, in_tipo_id])
 
-def sp_delete_equipamento(in_id):
+def delete_equipamento(in_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('sp_delete_equipamento', [in_id])
+        cursor.callproc('delete_equipamento', [in_id])
 
-def fn_read_equipamento():
+def read_equipamento():
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_read_equipamento')
+        cursor.callproc('read_equipamento')
         return cursor.fetchall()
 
-def fn_readone_equipamento(in_id):
+def readone_equipamento(in_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('fn_readone_equipamento', [in_id])
+        cursor.callproc('readone_equipamento', [in_id])
         return cursor.fetchall()
+
+def readjson_equipamento():
+    with get_pg_cursor() as cursor:
+        cursor.callproc('readjson_equipamento')
+        return listToJson(cursor.fetchall())

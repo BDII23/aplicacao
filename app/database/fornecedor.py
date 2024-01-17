@@ -1,4 +1,5 @@
 from db_manager import get_pg_cursor
+from ..utils import listToJson
 
 def create_fornecedor(p_nome, p_nif, p_email, p_telefone, p_endereco):
     with get_pg_cursor() as cursor:
@@ -21,3 +22,8 @@ def readone_fornecedor(p_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_fornecedor', [p_id])
         return cursor.fetchall()
+
+def readjson_fornecedor():
+    with get_pg_cursor() as cursor:
+        cursor.callproc('readjson_fornecedor')
+        return listToJson(cursor.fetchall())
