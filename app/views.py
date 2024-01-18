@@ -42,7 +42,7 @@ def componentes_atualizar(request):
 
 def compras_historico_listar(request):
     try:
-        compras = fn_read_encomenda_cliente()
+        compras = read_encomenda_cliente()
         print("Detalhes de compras de cliente : %s", compras)
 
         return render(request, 'compras/historicocompras.html', {'compras': compras})
