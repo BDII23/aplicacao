@@ -1,4 +1,4 @@
-from db_manager import get_pg_cursor
+from .db_manager import get_pg_cursor
 from ..utils import listToJson
 
 def delete_tipo_mao_obra(p_id):

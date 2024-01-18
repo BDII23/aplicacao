@@ -1,5 +1,4 @@
-from django.db import connection
-from db_manager import get_pg_cursor
+from .db_manager import get_pg_cursor
 from ..utils import listToJson
 
 def delete_detalhe_ficha_producao(detalhe_id):

@@ -1,4 +1,4 @@
-from db_manager import get_pg_cursor
+from .db_manager import get_pg_cursor
 from ..utils import listToJson
 
 def create_guia_remessa_cliente(p_data_envio, p_data_entrega, p_endereco_origem, p_endereco_chegada, p_estado_id, p_detalhe_encomenda_id, p_utilizador_id):

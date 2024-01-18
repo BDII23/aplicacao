@@ -1,4 +1,4 @@
-from db_manager import get_pg_cursor
+from .db_manager import get_pg_cursor
 from ..utils import listToJson
 
 def create_ficha_producao(quantidade_equipamentos, descricao, horas, utilizador_id, tipo_mao_obra_id, equipamento_id):

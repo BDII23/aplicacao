@@ -1,4 +1,4 @@
-from db_manager import get_pg_cursor
+from .db_manager import get_pg_cursor
 from ..utils import listToJson
 
 def create_estado_encomenda(p_data_criacao, p_estado):

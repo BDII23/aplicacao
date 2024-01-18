@@ -1,4 +1,4 @@
-from db_manager import get_pg_cursor
+from .db_manager import get_pg_cursor
 from ..utils import listToJson
 
 def create_fornecedor(p_nome, p_nif, p_email, p_telefone, p_endereco):

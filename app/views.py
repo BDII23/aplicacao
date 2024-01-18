@@ -2,27 +2,20 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .database.detalhe_encomenda_fornecedor import *
 from .database.componente import *
+from .database.armazem import *
+from .database.tipo_componente import *
 from .database.encomenda_cliente import * 
 import logging
 
 logger = logging.getLogger(__name__)
 
 def experimentos(request):
-    try:
-        detalhes_encomenda = read_detalhe_encomenda_fornecedor()
-        print("Detalhes da Encomenda do Fornecedor: %s", detalhes_encomenda)
-
-        return render(request, 'componentes/componentes_encomenda.html', {'detalhes_encomenda': detalhes_encomenda})
-        
-    except Exception as e:
-        return HttpResponse(e)
+    return
 
 def componentes_listar(request):
     try:
         componentes = readjson_componente()
-        print(componentes)
         return render(request, 'componentes/listar.html', {'componentes': componentes})
-        
     except Exception as e:
         return HttpResponse(e)
 

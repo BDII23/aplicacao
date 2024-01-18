@@ -1,4 +1,7 @@
-db_password.py
-app/__pycache__/
-app/database/__pycache__/
-main/__pycache__/
+# .gitignore
+
+/db_password.py
+/app/__pycache__
+/app/database/__pycache__
+/main/__pycache__
+/__pycache__
