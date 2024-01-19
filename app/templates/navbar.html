@@ -1,0 +1,105 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">REIS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <!--li class="nav-item active">
+                <a class="nav-link" href="\">Página Inicial <span class="sr-only">(current)</span></a>
+            </li-->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownComponentes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Componentes
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownComponentes">
+                    <a class="dropdown-item" href="/componentes/listar">Listar</a>
+                    <a class="dropdown-item" href="/componentes/registrar">Registrar</a>
+                    <a class="dropdown-item" href="/componentes/atualizar">Atualizar</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownEquipamentos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Equipamentos
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownEquipamentos">
+                    <a class="dropdown-item" href="/equipamentos/listar">Listar</a>
+                    <a class="dropdown-item" href="/equipamentos/registrar">Registrar</a>
+                    <a class="dropdown-item" href="/equipamentos/atualizar">Atualizar</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownFichaProducao" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Ficha Produção
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownFichaProducao">
+                    <a class="dropdown-item" href="/fichaproducao/listar">Listar</a>
+                    <a class="dropdown-item" href="/fichaproducao/registrar">Registrar</a>
+                    <a class="dropdown-item" href="/fichaproducao/atualizar">Atualizar</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCompras" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Compras
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownCompras">
+                    <a class="dropdown-item" href="/compras/listar">Listar</a>
+                    <a class="dropdown-item" href="/compras/registrar">Registrar</a>
+                    <a class="dropdown-item" href="/compras/atualizar">Atualizar</a>
+                </div>
+            </li>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownVendas" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Vendas
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownVendas">
+                    <a class="dropdown-item" href="/vendas/listar">Listar</a>
+                    <a class="dropdown-item" href="/vendas/registrar">Registrar</a>
+                    <a class="dropdown-item" href="/vendas/atualizar">Atualizar</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownColaboradores" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Colaboradores
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownColaboradores">
+                    <a class="dropdown-item" href="/colaboradores/listar">Listar</a>
+                    <a class="dropdown-item" href="/colaboradores/registrar">Registrar</a>
+                    <a class="dropdown-item" href="/colaboradores/atualizar">Atualizar</a>
+                </div>
+            </li>
+        </ul>
+        <!-- navbar.html -->
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Verificar se o nome do utilizador está no armazenamento local
+                var utilizadorNome = localStorage.getItem('utilizador_nome');
+
+                // Atualizar o bloco utilizador_nome com o nome do utilizador ou 'Iniciar Sessão' se não houver nome
+                var utilizadorBloco = document.getElementById('utilizador_nome');
+                if (utilizadorBloco) {
+                    utilizadorBloco.innerHTML = utilizadorNome ? utilizadorNome : 'Iniciar Sessão';
+                }
+            });
+        </script>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link d-flex" href="#">
+                    <div style="margin-right: 10px;">
+                        <span id="utilizador_nome"></span>
+                    </div>
+                    <div> <i class="fas fa-user"></i> </div>
+                </a>
+            </li>
+        </ul>
+
+    </div>
+</nav>

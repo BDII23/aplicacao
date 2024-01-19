@@ -3,94 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Minha Aplicação{% endblock %}</title>
+    <title>{% block title %}ALTERA O TITLE{% endblock %}</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% load static %}
+
+    {% block style %}
+        <link rel="stylesheet" type="text/css" href="{% static "fontawesome/css/all.min.css" %}" />
+    {% endblock %}
+
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">REIS</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <!--li class="nav-item active">
-                    <a class="nav-link" href="\">Página Inicial <span class="sr-only">(current)</span></a>
-                </li-->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownComponentes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Componentes
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownComponentes">
-                        <a class="dropdown-item" href="/componentes/listar">Listar</a>
-                        <a class="dropdown-item" href="/componentes/registrar">Registrar</a>
-                        <a class="dropdown-item" href="/componentes/atualizar">Atualizar</a>
-                    </div>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownEquipamentos" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Equipamentos
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownEquipamentos">
-                        <a class="dropdown-item" href="/equipamentos/listar">Listar</a>
-                        <a class="dropdown-item" href="/equipamentos/registrar">Registrar</a>
-                        <a class="dropdown-item" href="/equipamentos/atualizar">Atualizar</a>
-                    </div>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownFichaProducao" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Ficha Produção
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownFichaProducao">
-                        <a class="dropdown-item" href="/fichaproducao/listar">Listar</a>
-                        <a class="dropdown-item" href="/fichaproducao/registrar">Registrar</a>
-                        <a class="dropdown-item" href="/fichaproducao/atualizar">Atualizar</a>
-                    </div>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownVendas" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Vendas
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownVendas">
-                        <a class="dropdown-item" href="/vendas/listar">Listar</a>
-                        <a class="dropdown-item" href="/vendas/registrar">Registrar</a>
-                        <a class="dropdown-item" href="/vendas/atualizar">Atualizar</a>
-                    </div>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCompras" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Compras
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownCompras">
-                        <a class="dropdown-item" href="/compras/listar">Listar</a>
-                        <a class="dropdown-item" href="/compras/registrar">Registrar</a>
-                        <a class="dropdown-item" href="/compras/atualizar">Atualizar</a>
-                    </div>
-                </li>
-
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownColaboradores" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Colaboradores
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownColaboradores">
-                        <a class="dropdown-item" href="/colaboradores/listar">Listar</a>
-                        <a class="dropdown-item" href="/colaboradores/registrar">Registrar</a>
-                        <a class="dropdown-item" href="/colaboradores/atualizar">Atualizar</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <header class="container">
-        <h1>{% block header %}Sua Aplicação{% endblock %}</h1>
+    {% include 'navbar.html' %}
+    <header class="container mt-5 mb-4">
+        <h1>{% block header %}ALTERA O HEADER{% endblock %}</h1>
     </header>
     <main>
         <div class="container">
