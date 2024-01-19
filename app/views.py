@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .database.detalhe_encomenda_fornecedor import *
 from .database.componente import *
@@ -6,6 +6,7 @@ from .database.armazem import *
 from .database.tipo_componente import *
 from .database.encomenda_cliente import * 
 import logging
+from .forms import *
 
 logger = logging.getLogger(__name__)
 
@@ -21,14 +22,39 @@ def componentes_listar(request):
 
 def componentes_registrar(request):
     try:
-        componentes = create_componente()
-        print("Detalhes da Encomenda do Fornecedor: %s", componentes)
+        if request.method == 'POST':
+            form = FormComponenteRegistrar(request.POST)
+            if form.is_valid():
+                descricao = form.cleaned_data['descricao']
+                quantidade = form.cleaned_data['quantidade']
+                endereco_armazem = form.cleaned_data['endereco_armazem']
+                tipo_componente = form.cleaned_data['tipo_componente']
 
-        return render(request, 'componentes/listar.html', {'componentes': componentes})
-        
+                create_componente(descricao, quantidade, tipo_componente, endereco_armazem)
+
+                return redirect("/")
+        else:
+            form = FormComponenteRegistrar()
+        tipos_componentes = readjson_tipo_componente()
+        form.fields['tipo_componente'].choices = [(tipo['id'], tipo['tipo']) for tipo in tipos_componentes]
+        armazens = readjson_armazem()
+        form.fields['endereco_armazem'].choices = [(armazem['id'], armazem['endereco']) for armazem in armazens]
+
+        return render(request, 'componentes/registrar.html', {'form': form})
+
     except Exception as e:
         return HttpResponse(e)
-    
+
+'''def componentes_registrar(request):
+    try:
+        form = FormComponenteRegistrar()
+        tipos_componentes = readjson_tipo_componente()
+        form.fields['tipo_componente'].choices = [(tipo['tipo'], tipo['tipo']) for tipo in tipos_componentes]
+        return render(request, 'componentes/registrar.html', {'form': form})
+
+    except Exception as e:
+        return HttpResponse(e)'''
+
 def componentes_atualizar(request):
     try:
         componentes = update_componente()
