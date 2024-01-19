@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .database.detalhe_encomenda_fornecedor import *
 from .database.componente import *
 from .database.armazem import *
+from .database.equipamento import *
 from .database.tipo_componente import *
 from .database.encomenda_cliente import * 
 import logging
@@ -49,3 +50,29 @@ def compras_historico_listar(request):
     
     except Exception as e:
         return HttpResponse(e)
+    
+
+# Equipamentos #
+    
+def equipamentos_listar(request):
+    try:
+        equipamentos = readjson_equipamento()
+        return render(request, 'equipamentos/equipamentos-listar.html', {'lista_equipamentos': equipamentos})
+    except Exception as e:
+        return HttpResponse(e)
+
+# n terminado
+def equipamento_registar(request):
+    try:
+        equipamentos = create_equipamento()
+        return render(request, 'equipamentos/equipamento-register.html', {'equipamentos': equipamentos})
+        
+    except Exception as e:
+        return HttpResponse(e)
+
+
+    
+    
+     
+    
+    
