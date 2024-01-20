@@ -15,7 +15,7 @@ def componentes_listar(request):
 def componentes_registar(request):
     try:
         if request.method == 'POST':
-            form = FormComponenteregistar(request.POST)
+            form = FormComponente(request.POST)
             if form.is_valid():
                 create_componente(form.cleaned_data['descricao'], 
                     form.cleaned_data['quantidade'], 
@@ -23,7 +23,7 @@ def componentes_registar(request):
                     form.cleaned_data['tipo_componente'])
                 return redirect("/")
         else:
-            form = FormComponenteregistar()
+            form = FormComponente()
         return render(request, 'componentes/registar.html', {'form': form})
 
     except Exception as e:
@@ -32,7 +32,7 @@ def componentes_registar(request):
 def componentes_atualizar(request, id):
     try:
         if request.method == 'POST':
-            form = FormComponenteregistar(request.POST)
+            form = FormComponente(request.POST)
             if form.is_valid():
                 update_componente(id,
                     form.cleaned_data['descricao'], 
@@ -41,7 +41,7 @@ def componentes_atualizar(request, id):
                     form.cleaned_data['tipo_componente'])
                 return redirect("/")
         else:
-            form = FormComponenteregistar()
+            form = FormComponente()
             componente = readone_componente(id)
             print("opa")
             print(componente)

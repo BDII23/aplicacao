@@ -1,30 +1,34 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from ..database.ficha_producao import *
+from ..database.detalhe_ficha_producao import *
+from ..database.tipo_mao_obra import *
 from ..database.componente import *
-from ..database.armazem import *
-from ..database.tipo_componente import *
+from ..database.equipamento import *
 from ..forms import *
 
 def fichaproducoes_listar(request):
     try:
-        componentes = readjson_componente()
-        return render(request, 'componentes/listar.html', {'componentes': componentes})
+        componentes = readjson_ficha_producao()
+        return render(request, 'ficha_producao/listar.html', {'componentes': componentes})
     except Exception as e:
         return HttpResponse(e)
 
 def fichaproducoes_registar(request):
     try:
         if request.method == 'POST':
-            form = FormComponenteregistar(request.POST)
+            form = FormFichaProducao(request.POST)
             if form.is_valid():
-                create_componente(form.cleaned_data['descricao'], 
-                    form.cleaned_data['quantidade'], 
-                    form.cleaned_data['endereco_armazem'], 
-                    form.cleaned_data['tipo_componente'])
+                _quantidade = form.cleaned_data['quantidade']
+                _tipo_mao_obra = form.cleaned_data['tipo_mao_obra']
+                _descricao = form.cleaned_data['descricao']
+                _componentes = form.cleaned_data['componentes']
+                create_ficha_producao(_quantidade, _descricao, 0, )
                 return redirect("/")
         else:
-            form = FormComponenteregistar()
-        return render(request, 'componentes/registar.html', {'form': form})
+            form = FormFichaProducao()
+            form.fields['horas'].widget = forms.HiddenInput()
+        return render(request, 'ficha_producao/registar.html', {'form': form})
 
     except Exception as e:
         return HttpResponse(e)
@@ -32,7 +36,7 @@ def fichaproducoes_registar(request):
 def fichaproducoes_atualizar(request, id):
     try:
         if request.method == 'POST':
-            form = FormComponenteregistar(request.POST)
+            form = FormComponente(request.POST)
             if form.is_valid():
                 update_componente(id,
                     form.cleaned_data['descricao'], 
@@ -41,7 +45,7 @@ def fichaproducoes_atualizar(request, id):
                     form.cleaned_data['tipo_componente'])
                 return redirect("/")
         else:
-            form = FormComponenteregistar()
+            form = FormComponente()
             componente = readone_componente(id)
             print("opa")
             print(componente)
@@ -51,7 +55,7 @@ def fichaproducoes_atualizar(request, id):
                 'tipo_componente': componente['tipo_id'],
                 'descricao': componente['descricao']
             })
-        return render(request, 'componentes/atualizar.html', {'form': form})
+        return render(request, 'ficha_producao/atualizar.html', {'form': form})
 
     except Exception as e:
         return HttpResponse(e)
