@@ -7,7 +7,7 @@
   <main class="container">
     <section class="row mb-4">
       <div class="col-md-12">
-        <a href="/componentes/registrar">
+        <a href="/componentes/registar">
           <button type="button" class="btn btn-primary">Adicionar</button>
         </a>
       </div>
@@ -33,18 +33,13 @@
             <td>{{ componente.quantidade }}</td>
             <td>{{ componente.tipo_componente.0.tipo }}</td>
             <td>{{ componente.armazem.0.endereco }}</td>
-            <td>    
-              <button type="submit" class="btn btn-secondary">
-                <i class="fas fa-pen"></i>
-              </button>
-            </td>
-            <!--td>
-              <a href="{% url 'componentes_apagar' id=componente.id %}">
-                <button type="submit" class="btn btn-danger">
-                  <i class="fas fa-trash"></i>
+            <td>
+              <a href="{% url 'componentes_atualizar' id=componente.id %}">
+                <button type="submit" class="btn btn-secondary">
+                  <i class="fas fa-pen"></i>
                 </button>
               </a>
-            </td-->
+            </td>
           </tr>
           {% endfor %}
         </tbody>

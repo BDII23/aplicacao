@@ -2,6 +2,7 @@
 
 /db_password.py
 /app/__pycache__
-/app/database/__pycache__
 /main/__pycache__
 /__pycache__
+/app/vistas/__pycache__
+/app/database/__pycache__
