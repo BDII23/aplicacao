@@ -1,9 +1,10 @@
-from .db_manager import get_pg_cursor
+from .db_manager import *
 from ..utils import listToJson
 
 def create_armazem(p_endereco):
     with get_pg_cursor() as cursor:
         cursor.callproc('create_armazem', [p_endereco])
+        get_pg_connection().commit()
 
 def update_armazem(p_id, p_endereco):
     with get_pg_cursor() as cursor:

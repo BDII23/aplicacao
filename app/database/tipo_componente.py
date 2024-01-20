@@ -1,9 +1,10 @@
-from .db_manager import get_pg_cursor
+from .db_manager import *
 from ..utils import listToJson
 
 def create_tipo_componente(p_tipo):
     with get_pg_cursor() as cursor:
         cursor.callproc('create_tipo_componente', [p_tipo])
+        get_pg_connection().commit()
 
 def delete_tipo_componente(p_id):
     with get_pg_cursor() as cursor:

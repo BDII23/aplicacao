@@ -1,4 +1,4 @@
-from .db_manager import get_pg_cursor
+from .db_manager import *
 from ..utils import listToJson
 
 def delete_estado_guia_remessa(p_id):
@@ -8,6 +8,7 @@ def delete_estado_guia_remessa(p_id):
 def create_estado_guia_remessa(p_estado):
     with get_pg_cursor() as cursor:
         cursor.callproc('create_estado_guia_remessa', [p_estado])
+        get_pg_connection().commit()
 
 def update_estado_guia_remessa(p_id, p_estado):
     with get_pg_cursor() as cursor:

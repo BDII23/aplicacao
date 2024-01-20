@@ -1,4 +1,4 @@
-from .db_manager import get_pg_cursor
+from .db_manager import *
 from ..utils import listToJson
 
 def delete_detalhe_ficha_producao(detalhe_id):
@@ -8,6 +8,7 @@ def delete_detalhe_ficha_producao(detalhe_id):
 def create_detalhe_ficha_producao(p_descricao, p_componente_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('create_detalhe_ficha_producao', [p_descricao, p_componente_id])
+        get_pg_connection().commit()
 
 def update_detalhe_ficha_producao(p_detalhe_id, p_descricao, p_componente_id):
     with get_pg_cursor() as cursor:

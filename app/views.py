@@ -30,7 +30,7 @@ def componentes_registrar(request):
                 _quantidade = form.cleaned_data['quantidade']
                 _endereco_armazem = form.cleaned_data['endereco_armazem']
                 _tipo_componente = form.cleaned_data['tipo_componente']
-                create_componente(str(_descricao), int(_quantidade), int(_tipo_componente), int(_endereco_armazem))
+                create_componente(_descricao, _quantidade, _tipo_componente, _endereco_armazem)
                 return redirect("/")
         else:
             form = FormComponenteRegistrar()

@@ -1,9 +1,10 @@
-from .db_manager import get_pg_cursor
+from .db_manager import *
 from ..utils import listToJson
 
 def create_guia_remessa_cliente(p_data_envio, p_data_entrega, p_endereco_origem, p_endereco_chegada, p_estado_id, p_detalhe_encomenda_id, p_utilizador_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('create_guia_remessa_cliente', [p_data_envio, p_data_entrega, p_endereco_origem, p_endereco_chegada, p_estado_id, p_detalhe_encomenda_id, p_utilizador_id])
+        get_pg_connection().commit()
 
 def update_guia_remessa_cliente(p_id, p_data_envio, p_data_entrega, p_endereco_origem, p_endereco_chegada, p_estado_id, p_detalhe_encomenda_id, p_utilizador_id):
     with get_pg_cursor() as cursor:

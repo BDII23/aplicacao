@@ -1,9 +1,10 @@
-from .db_manager import get_pg_cursor
+from .db_manager import *
 from ..utils import listToJson
 
 def create_ficha_producao(quantidade_equipamentos, descricao, horas, utilizador_id, tipo_mao_obra_id, equipamento_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('create_ficha_producao', [quantidade_equipamentos, descricao, horas, utilizador_id, tipo_mao_obra_id, equipamento_id])
+        get_pg_connection().commit()
 
 def update_ficha_producao(ficha_id, quantidade_equipamentos, descricao, horas, utilizador_id, tipo_mao_obra_id, equipamento_id):
     with get_pg_cursor() as cursor:

@@ -1,9 +1,10 @@
-from .db_manager import get_pg_cursor
+from .db_manager import *
 from ..utils import listToJson
 
 def create_utilizador(p_email, p_senha, p_nome, p_sobrenome, p_perfil_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('create_utilizador', [p_email, p_senha, p_nome, p_sobrenome, p_perfil_id])
+        get_pg_connection().commit()
 
 def update_utilizador(p_id, p_email, p_senha, p_nome, p_sobrenome, p_perfil_id):
     with get_pg_cursor() as cursor:

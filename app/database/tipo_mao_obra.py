@@ -1,4 +1,4 @@
-from .db_manager import get_pg_cursor
+from .db_manager import *
 from ..utils import listToJson
 
 def delete_tipo_mao_obra(p_id):
@@ -8,6 +8,7 @@ def delete_tipo_mao_obra(p_id):
 def create_tipo_mao_obra(p_tipo, p_custo):
     with get_pg_cursor() as cursor:
         cursor.callproc('create_tipo_mao_obra', [p_tipo, p_custo])
+        get_pg_connection().commit()
 
 def update_tipo_mao_obra(p_id, p_tipo, p_custo):
     with get_pg_cursor() as cursor:

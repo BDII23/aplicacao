@@ -1,4 +1,4 @@
-from .db_manager import get_pg_cursor
+from .db_manager import *
 from ..utils import listToJson
 
 def delete_encomenda_cliente(p_id):
@@ -8,6 +8,7 @@ def delete_encomenda_cliente(p_id):
 def create_encomenda_cliente(p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('create_encomenda_cliente', [p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id])
+        get_pg_connection().commit()
 
 def update_encomenda_cliente(p_id, p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id):
     with get_pg_cursor() as cursor:

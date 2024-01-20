@@ -1,9 +1,10 @@
-from .db_manager import get_pg_cursor
+from .db_manager import *
 from ..utils import listToJson
 
 def create_fornecedor(p_nome, p_nif, p_email, p_telefone, p_endereco):
     with get_pg_cursor() as cursor:
         cursor.callproc('create_fornecedor', [p_nome, p_nif, p_email, p_telefone, p_endereco])
+        get_pg_connection().commit()
 
 def delete_fornecedor(p_id):
     with get_pg_cursor() as cursor:

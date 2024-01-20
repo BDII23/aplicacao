@@ -22,5 +22,17 @@ mg_connection = MongoClient(
 def get_pg_cursor():
     return pg_connection.cursor()
 
+def get_pg_connection():
+    return pg_connection
+
+def get_pg_settings():
+    return pg_settings
+
 def get_mg_cursor():
     return mg_connection.cursor()
+
+def get_mg_connection():
+    return mg_connection
+
+def get_mg_settings():
+    return mg_settings

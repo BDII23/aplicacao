@@ -1,4 +1,4 @@
-from .db_manager import get_pg_cursor
+from .db_manager import *
 from ..utils import listToJson
 
 def delete_componente(p_id):
@@ -7,8 +7,8 @@ def delete_componente(p_id):
 
 def create_componente(p_descricao, p_quantidade, p_tipo_id, p_armazem_id):
     with get_pg_cursor() as cursor:
-        print('CALL create_componente(%s, %s, %s, %s)', [p_descricao, p_quantidade, p_tipo_id, p_armazem_id])
-        cursor.execute('CALL create_componente(%s, %d, %d, %d)', [p_descricao, p_quantidade, p_tipo_id, p_armazem_id])
+        cursor.execute('CALL create_componente(%s, %s, %s, %s)', [p_descricao, p_quantidade, p_tipo_id, p_armazem_id])
+        get_pg_connection().commit()
 
 def update_componente(p_id, p_descricao, p_quantidade, p_tipo_id, p_armazem_id):
     with get_pg_cursor() as cursor:

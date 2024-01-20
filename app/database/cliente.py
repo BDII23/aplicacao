@@ -1,9 +1,10 @@
-from .db_manager import get_pg_cursor
+from .db_manager import *
 from ..utils import listToJson
 
 def create_cliente(p_email, p_senha, p_nome, p_nif):
     with get_pg_cursor() as cursor:
         cursor.callproc('create_cliente', [p_email, p_senha, p_nome, p_nif])
+        get_pg_connection().commit()
 
 def update_cliente(p_id, p_email, p_senha, p_nome, p_nif):
     with get_pg_cursor() as cursor:
