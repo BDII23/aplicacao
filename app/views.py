@@ -11,8 +11,8 @@ from .forms import *
 
 logger = logging.getLogger(__name__)
 
-def experimentos(request):
-    return
+def pagina_inicial(request):
+    return render(request, 'index.html')
 
 def componentes_listar(request):
     try:
@@ -26,21 +26,19 @@ def componentes_registrar(request):
         if request.method == 'POST':
             form = FormComponenteRegistrar(request.POST)
             if form.is_valid():
-                descricao = form.cleaned_data['descricao']
-                quantidade = form.cleaned_data['quantidade']
-                endereco_armazem = form.cleaned_data['endereco_armazem']
-                tipo_componente = form.cleaned_data['tipo_componente']
-
-                create_componente(descricao, quantidade, tipo_componente, endereco_armazem)
-
+                _descricao = form.cleaned_data['descricao']
+                _quantidade = form.cleaned_data['quantidade']
+                _endereco_armazem = form.cleaned_data['endereco_armazem']
+                _tipo_componente = form.cleaned_data['tipo_componente']
+                create_componente(str(_descricao), int(_quantidade), int(_tipo_componente), int(_endereco_armazem))
                 return redirect("/")
         else:
             form = FormComponenteRegistrar()
-        tipos_componentes = readjson_tipo_componente()
-        form.fields['tipo_componente'].choices = [(tipo['id'], tipo['tipo']) for tipo in tipos_componentes]
-        armazens = readjson_armazem()
-        form.fields['endereco_armazem'].choices = [(armazem['id'], armazem['endereco']) for armazem in armazens]
-
+            ''' tipos_componentes = readjson_tipo_componente()
+            form.fields['tipo_componente'].choices = [(tipo['id'], tipo['tipo']) for tipo in tipos_componentes]
+            armazens = readjson_armazem()
+            form.fields['endereco_armazem'].choices = [(armazem['id'], armazem['endereco']) for armazem in armazens]
+'''
         return render(request, 'componentes/registrar.html', {'form': form})
 
     except Exception as e:
