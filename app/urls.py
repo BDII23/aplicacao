@@ -7,12 +7,13 @@ urlpatterns = [
     # Componentes
     path('componentes/listar', views.componentes_listar, name='componentes_listar'),
     path('componentes/registrar', views.componentes_registrar, name='componentes_registrar'),
-    path('componentes/atualizar', views.componentes_atualizar, name='componentes_atualizar'),
+    path('componentes/atualizar/<int:id>', views.componentes_atualizar, name='componentes_atualizar'),
+    path('componentes/apagar/<int:id>', views.componentes_apagar, name='componentes_apagar'),
     
     # Equipamentos
     path('equipamento/listar', views.equipamentos_listar, name='equipamentos_listar'),
     path('equipamento/registar', views.equipamento_registar, name='equipamento_registar'),
-    #path('equipamento/atualizar', views.equipamento_atualizar, name='equipamento_atualizar'),
+    #path('equipamento/atualizar/<int:id>', views.equipamento_atualizar, name='equipamento_atualizar'),
     
     # Ficha Producao, Componentes, Equipamento...
     #path('fichaproducao/listar', views.fichaproducaos_listar, name='fichaproducaos_listar'),

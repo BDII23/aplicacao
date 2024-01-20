@@ -5,7 +5,13 @@
 
 
   <main class="container">
-
+    <section class="row mb-4">
+      <div class="col-md-12">
+        <a href="/componentes/registrar">
+          <button type="button" class="btn btn-primary">Adicionar</button>
+        </a>
+      </div>
+    </section>
     <section class="table-responsive">
       <table class="table table-striped table-bordered">
         <thead>
@@ -27,17 +33,22 @@
             <td>{{ componente.quantidade }}</td>
             <td>{{ componente.tipo_componente.0.tipo }}</td>
             <td>{{ componente.armazem.0.endereco }}</td>
+            <td>    
+              <button type="submit" class="btn btn-secondary">
+                <i class="fas fa-pen"></i>
+              </button>
+            </td>
+            <!--td>
+              <a href="{% url 'componentes_apagar' id=componente.id %}">
+                <button type="submit" class="btn btn-danger">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </a>
+            </td-->
           </tr>
           {% endfor %}
         </tbody>
       </table>
     </section>
-
-    <section class="row">
-      <div class="col-md-12">
-        <button type="button" class="btn btn-primary">Adicionar componente</button>
-      </div>
-    </section>
-
   </main>
 {% endblock %}

@@ -17,3 +17,9 @@ class FormComponenteRegistrar(forms.Form):
 
         armazens = readjson_armazem()
         self.fields['endereco_armazem'].choices = [(armazem['id'], armazem['endereco']) for armazem in armazens]
+        
+    def preencher_form(self, dados_form):
+        self.fields['quantidade'].initial = dados_form['quantidade']
+        self.fields['endereco_armazem'].initial = dados_form['endereco_armazem']
+        self.fields['tipo_componente'].initial = dados_form['tipo_componente']
+        self.fields['descricao'].initial = dados_form['descricao']

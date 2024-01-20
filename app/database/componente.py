@@ -1,9 +1,10 @@
 from .db_manager import *
-from ..utils import listToJson
+from ..utils import listToJson, getFirstElement
 
 def delete_componente(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('delete_componente', [p_id])
+        cursor.execute('CALL delete_componente(%s)', [p_id])
+        get_pg_connection().commit()
 
 def create_componente(p_descricao, p_quantidade, p_tipo_id, p_armazem_id):
     with get_pg_cursor() as cursor:
@@ -12,7 +13,8 @@ def create_componente(p_descricao, p_quantidade, p_tipo_id, p_armazem_id):
 
 def update_componente(p_id, p_descricao, p_quantidade, p_tipo_id, p_armazem_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('update_componente', [p_id, p_descricao, p_quantidade, p_tipo_id, p_armazem_id])
+        cursor.execute('CALL update_componente(%s, %s, %s, %s, %s)', [p_id, p_descricao, p_quantidade, p_tipo_id, p_armazem_id])
+        get_pg_connection().commit()
 
 def read_componente():
     with get_pg_cursor() as cursor:
@@ -22,7 +24,7 @@ def read_componente():
 def readone_componente(p_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_componente', [p_id])
-        return cursor.fetchall()
+        return getFirstElement(cursor.fetchall())
 
 def readjson_componente():
     with get_pg_cursor() as cursor:

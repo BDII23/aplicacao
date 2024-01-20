@@ -26,43 +26,51 @@ def componentes_registrar(request):
         if request.method == 'POST':
             form = FormComponenteRegistrar(request.POST)
             if form.is_valid():
-                _descricao = form.cleaned_data['descricao']
-                _quantidade = form.cleaned_data['quantidade']
-                _endereco_armazem = form.cleaned_data['endereco_armazem']
-                _tipo_componente = form.cleaned_data['tipo_componente']
-                create_componente(_descricao, _quantidade, _tipo_componente, _endereco_armazem)
+                create_componente(form.cleaned_data['descricao'], 
+                    form.cleaned_data['quantidade'], 
+                    form.cleaned_data['endereco_armazem'], 
+                    form.cleaned_data['tipo_componente'])
                 return redirect("/")
         else:
             form = FormComponenteRegistrar()
-            ''' tipos_componentes = readjson_tipo_componente()
-            form.fields['tipo_componente'].choices = [(tipo['id'], tipo['tipo']) for tipo in tipos_componentes]
-            armazens = readjson_armazem()
-            form.fields['endereco_armazem'].choices = [(armazem['id'], armazem['endereco']) for armazem in armazens]
-'''
         return render(request, 'componentes/registrar.html', {'form': form})
 
     except Exception as e:
         return HttpResponse(e)
 
-'''def componentes_registrar(request):
+def componentes_atualizar(request, id):
     try:
-        form = FormComponenteRegistrar()
-        tipos_componentes = readjson_tipo_componente()
-        form.fields['tipo_componente'].choices = [(tipo['tipo'], tipo['tipo']) for tipo in tipos_componentes]
-        return render(request, 'componentes/registrar.html', {'form': form})
+        if request.method == 'POST':
+            form = FormComponenteRegistrar(request.POST)
+            if form.is_valid():
+                update_componente(id,
+                    form.cleaned_data['descricao'], 
+                    form.cleaned_data['quantidade'], 
+                    form.cleaned_data['endereco_armazem'], 
+                    form.cleaned_data['tipo_componente'])
+                return redirect("/")
+        else:
+            form = FormComponenteRegistrar()
+            componente = readone_componente(id)
+            print("opa")
+            print(componente)
+            form.preencher_form({
+                'quantidade': componente['quantidade'],
+                'endereco_armazem': componente['armazem_id'],
+                'tipo_componente': componente['tipo_id'],
+                'descricao': componente['descricao']
+            })
+        return render(request, 'componentes/atualizar.html', {'form': form})
 
+    except Exception as e:
+        return HttpResponse(e)
+    
+'''def componentes_apagar(request, id):
+    try:
+        delete_componente(id)
+        return redirect("/")
     except Exception as e:
         return HttpResponse(e)'''
-
-def componentes_atualizar(request):
-    try:
-        componentes = update_componente()
-        print("Detalhes da Encomenda do Fornecedor: %s", componentes)
-
-        return render(request, 'componentes/atualizar.html', {'componentes': componentes})
-        
-    except Exception as e:
-        return HttpResponse(e)
     
 
 def compras_historico_listar(request):
