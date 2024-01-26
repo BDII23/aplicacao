@@ -36,7 +36,7 @@ def equipamentos_listar(request):
         return HttpResponse(e)
 
 # n terminado
-def equipamento_registar(request):
+def equipamentos_registar(request):
     try:
         equipamentos = create_equipamento()
         return render(request, 'equipamentos/equipamento-register.html', {'equipamentos': equipamentos})

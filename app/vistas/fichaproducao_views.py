@@ -5,6 +5,7 @@ from ..database.detalhe_ficha_producao import *
 from ..database.tipo_mao_obra import *
 from ..database.componente import *
 from ..database.equipamento import *
+from ..user import *
 from ..forms import *
 
 def fichaproducoes_listar(request):
@@ -32,7 +33,9 @@ def fichaproducoes_registar(request):
                 _tipo_mao_obra = form.cleaned_data['tipo_mao_obra']
                 _descricao = form.cleaned_data['descricao']
                 _componentes = form.cleaned_data['componentes']
-                create_ficha_producao(_quantidade, _descricao, 0, )
+                _tipo_equipamento = form.cleaned_data['tipo_equipamento']
+                print(_quantidade, _descricao, 0, get_logged_user(), _tipo_mao_obra, _tipo_equipamento, _componentes)
+                create_ficha_producao(_quantidade, _descricao, 0, get_logged_user(), _tipo_mao_obra, _tipo_equipamento, _componentes)
                 return redirect("/")
         else:
             form = FormFichaProducao()

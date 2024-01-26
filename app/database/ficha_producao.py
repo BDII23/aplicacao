@@ -1,14 +1,16 @@
 from .db_manager import *
 from ..utils import listToJson
 
-def create_ficha_producao(quantidade_equipamentos, descricao, horas, utilizador_id, tipo_mao_obra_id, equipamento_id):
+
+def create_ficha_producao(quantidade_equipamentos, descricao, horas, utilizador_id, tipo_mao_obra_id, tipo_equipamento_id, componentes):
     with get_pg_cursor() as cursor:
-        cursor.callproc('create_ficha_producao', [quantidade_equipamentos, descricao, horas, utilizador_id, tipo_mao_obra_id, equipamento_id])
+        cursor.execute('CALL create_ficha_producao(%s, %s, %s, %s, %s, %s, %s)', [quantidade_equipamentos, descricao, horas, utilizador_id, int(tipo_mao_obra_id), int(tipo_equipamento_id), list(map(int, componentes))])
         get_pg_connection().commit()
 
-def update_ficha_producao(ficha_id, quantidade_equipamentos, descricao, horas, utilizador_id, tipo_mao_obra_id, equipamento_id):
+def update_ficha_producao(ficha_id, quantidade_equipamentos, descricao, horas, utilizador_id, tipo_mao_obra_id, tipo_equipamento_id, componentes):
     with get_pg_cursor() as cursor:
-        cursor.callproc('update_ficha_producao', [ficha_id, quantidade_equipamentos, descricao, horas, utilizador_id, tipo_mao_obra_id, equipamento_id])
+        cursor.execute('CALL update_ficha_producao(%s, %s, %s, %s, %s, %s, %s, %s)', [ficha_id, quantidade_equipamentos, descricao, horas, utilizador_id, int(tipo_mao_obra_id), int(tipo_equipamento_id), list(map(int, componentes))])
+        get_pg_connection().commit()
 
 def delete_ficha_producao(ficha_id):
     with get_pg_cursor() as cursor:

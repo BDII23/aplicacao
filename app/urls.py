@@ -10,9 +10,9 @@ urlpatterns = [
     path('componentes/atualizar/<int:id>', views.componentes_atualizar, name='componentes_atualizar'),
     
     # Equipamentos
-    path('equipamento/listar', views.equipamentos_listar, name='equipamentos_listar'),
-    path('equipamento/registar', views.equipamento_registar, name='equipamento_registar'),
-    #path('equipamento/atualizar/<int:id>', views.equipamento_atualizar, name='equipamento_atualizar'),
+    path('equipamentos/listar', views.equipamentos_listar, name='equipamentos_listar'),
+    path('equipamentos/registar', views.equipamentos_registar, name='equipamentos_registar'),
+    #path('equipamentos/atualizar/<int:id>', views.equipamentos_atualizar, name='equipamentos_atualizar'),
     
     # Ficha Producao, Componentes, Equipamento...
     path('fichaproducao/listar', views.fichaproducoes_listar, name='fichaproducoes_listar'),

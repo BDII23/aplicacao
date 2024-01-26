@@ -5,14 +5,14 @@ def delete_detalhe_ficha_producao(detalhe_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('delete_detalhe_ficha_producao', [detalhe_id])
 
-def create_detalhe_ficha_producao(p_descricao, p_componente_id):
+def create_detalhe_ficha_producao(p_descricao, p_componente_id, p_ficha_producao_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('create_detalhe_ficha_producao', [p_descricao, p_componente_id])
+        cursor.callproc('create_detalhe_ficha_producao', [p_descricao, p_componente_id, p_ficha_producao_id])
         get_pg_connection().commit()
 
-def update_detalhe_ficha_producao(p_detalhe_id, p_descricao, p_componente_id):
+def update_detalhe_ficha_producao(p_detalhe_id, p_descricao, p_componente_id, p_ficha_producao_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('update_detalhe_ficha_producao', [p_detalhe_id, p_descricao, p_componente_id])
+        cursor.callproc('update_detalhe_ficha_producao', [p_detalhe_id, p_descricao, p_componente_id, p_ficha_producao_id])
 
 def read_detalhe_ficha_producao():
     with get_pg_cursor() as cursor:
