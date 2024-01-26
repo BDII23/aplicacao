@@ -16,21 +16,22 @@ urlpatterns = [
     
     # Ficha Producao, Componentes, Equipamento...
     path('fichaproducao/listar', views.fichaproducoes_listar, name='fichaproducoes_listar'),
+    path('fichaproducao/listar/id/<int:id>', views.fichaproducoes_listar_id, name='fichaproducoes_listar_id'),
     path('fichaproducao/registar', views.fichaproducoes_registar, name='fichaproducoes_registar'),
-    path('fichaproducao/atualizar', views.fichaproducoes_atualizar, name='fichaproducoes_atualizar'),
+    path('fichaproducao/atualizar/<int:id>', views.fichaproducoes_atualizar, name='fichaproducoes_atualizar'),
     
     # Encomendas, Remessas, Faturas...
     path('compras/listar', views.compras_historico_listar, name='historico_compras_listar'),
     #path('compras/registar', views.compras_historico_listar, name='historico_compras_listar'),
-    #path('compras/atualizar', views.compras_historico_listar, name='historico_compras_listar'),
+    #path('compras/atualizar/<int:id>', views.compras_historico_listar, name='historico_compras_listar'),
     
     # Encomendas, Remessas, Faturas...
     #path('vendas/listar', views.vendas_listar, name='vendas_listar'),
     #path('vendas/registar', views.vendas_registar, name='vendas_registar'),
-    #path('vendas/atualizar', views.vendas_atualizar, name='vendas_atualizar'),
+    #path('vendas/atualizar/<int:id>', views.vendas_atualizar, name='vendas_atualizar'),
     
     # Utilizadores, Clientes, Fornecedores
     #path('colaboradores/listar', views.colaboradores_listar, name='colaboradores_listar'),
     #path('colaboradores/registar', views.colaboradores_registar, name='colaboradores_registar'),
-    #path('colaboradores/atualizar', views.colaboradores_atualizar, name='colaboradores_atualizar'),
+    #path('colaboradores/atualizar/<int:id>', views.colaboradores_atualizar, name='colaboradores_atualizar'),
 ]

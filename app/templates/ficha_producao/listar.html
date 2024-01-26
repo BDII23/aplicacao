@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block title %}Listar | Componentes{% endblock %}
-{% block header %}Listar Componentes{% endblock %}
+{% block title %}Listar | Ficha Produção{% endblock %}
+{% block header %}Listar Ficha Produção{% endblock %}
 {% block content %}
 
 
   <main class="container">
     <section class="row mb-4">
       <div class="col-md-12">
-        <a href="/componentes/registar">
+        <a href="/fichaproducao/registar">
           <button type="button" class="btn btn-primary">Adicionar</button>
         </a>
       </div>
@@ -19,22 +19,33 @@
             <th>ID</th>
             <th>Data Criação</th>
             <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Tipo</th>
-            <th>Armazem</th>
+            <th>Quantidade Equipamentos</th>
+            <th>Tipo Mão Obra</th>
+            <th>Horas</th>
+            <th>Detalhes</th>
           </tr>
         </thead>
         <tbody>
-          {% for componente in componentes %}
+          {% for ficha in ficha_producao %}
           <tr>
-            <td>{{ componente.id }}</td>
-            <td>{{ componente.data_criacao }}</td>
-            <td>{{ componente.descricao }}</td>
-            <td>{{ componente.quantidade }}</td>
-            <td>{{ componente.tipo_componente.0.tipo }}</td>
-            <td>{{ componente.armazem.0.endereco }}</td>
+            <td>{{ ficha.id }}</td>
+            <td>{{ ficha.data_criacao }}</td>
+            <td>{{ ficha.descricao }}</td>
+            <td>{{ ficha.quantidade_equipamentos }}</td>
+            <td>{{ ficha.tipo_mao_obra.0.tipo }} ({{ ficha.tipo_mao_obra.0.custo }}/h)</td>
+            <td>{{ ficha.horas }} horas</td>
             <td>
-              <a href="{% url 'componentes_atualizar' id=componente.id %}">
+              <a href="{% url 'fichaproducoes_listar_id' id=ficha.id %}">
+                <button type="submit" class="btn btn-secondary">
+                  <i class="fas fa-plus"></i>
+                </button>
+              </a>
+            </td>
+            <!--{% for detalhe in ficha.detalhe_ficha_producao %}
+              <td>{{ detalhe.componente.0 }}</td>
+            {% endfor %}-->
+            <td>
+              <a href="{% url 'fichaproducoes_atualizar' id=ficha.id %}">
                 <button type="submit" class="btn btn-secondary">
                   <i class="fas fa-pen"></i>
                 </button>

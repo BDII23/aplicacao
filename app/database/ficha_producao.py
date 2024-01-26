@@ -19,10 +19,10 @@ def read_ficha_producao():
         cursor.callproc('read_ficha_producao')
         return cursor.fetchall()
 
-def readone_ficha_producao(ficha_id):
+def readone_ficha_producao(_ficha_producao_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('readone_ficha_producao', [ficha_id])
-        return cursor.fetchone()
+        cursor.callproc('readone_ficha_producao', [_ficha_producao_id])
+        return listToJson(cursor.fetchone())
 
 def readjson_ficha_producao():
     with get_pg_cursor() as cursor:

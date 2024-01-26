@@ -9,8 +9,17 @@ from ..forms import *
 
 def fichaproducoes_listar(request):
     try:
-        componentes = readjson_ficha_producao()
-        return render(request, 'ficha_producao/listar.html', {'componentes': componentes})
+        ficha_producao = readjson_ficha_producao()
+        print(ficha_producao)
+        return render(request, 'ficha_producao/listar.html', {'ficha_producao': ficha_producao})
+    except Exception as e:
+        return HttpResponse(e)
+
+def fichaproducoes_listar_id(request, id):
+    try:
+        ficha_producao = readone_ficha_producao(id)
+        print(ficha_producao)
+        return render(request, 'ficha_producao/listar_id.html', {'ficha_producao': ficha_producao})
     except Exception as e:
         return HttpResponse(e)
 
