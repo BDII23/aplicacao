@@ -45,29 +45,48 @@ def fichaproducoes_registar(request):
     except Exception as e:
         return HttpResponse(e)
 
+
+
+
 def fichaproducoes_atualizar(request, id):
     try:
         if request.method == 'POST':
-            form = FormComponente(request.POST)
+            form = FormFichaProducao(request.POST)
             if form.is_valid():
-                update_componente(id,
-                    form.cleaned_data['descricao'], 
-                    form.cleaned_data['quantidade'], 
-                    form.cleaned_data['endereco_armazem'], 
-                    form.cleaned_data['tipo_componente'])
+                _quantidade = form.cleaned_data['quantidade']
+                _tipo_mao_obra = form.cleaned_data['tipo_mao_obra']
+                _descricao = form.cleaned_data['descricao']
+                _componentes = form.cleaned_data['componentes']
+                _tipo_equipamento = form.cleaned_data['tipo_equipamento']
+                print(_quantidade, _descricao, 0, get_logged_user(), _tipo_mao_obra, _tipo_equipamento, _componentes)
+                update_ficha_producao(id, _quantidade, _descricao, 0, get_logged_user(), _tipo_mao_obra, _tipo_equipamento, _componentes)
                 return redirect("/")
         else:
-            form = FormComponente()
-            componente = readone_componente(id)
-            print("opa")
-            print(componente)
+            form = FormFichaProducao()
+            ficha_producao = readone_ficha_producao(id)
+            componente_selected_arr = getComponentesIds(ficha_producao)
+            
+            print(ficha_producao)
             form.preencher_form({
-                'quantidade': componente['quantidade'],
-                'endereco_armazem': componente['armazem_id'],
-                'tipo_componente': componente['tipo_id'],
-                'descricao': componente['descricao']
+                'quantidade': ficha_producao['quantidade_equipamentos'],
+                'tipo_mao_obra': ficha_producao['tipo_mao_obra_id'],
+                'horas': ficha_producao['horas'],
+                'descricao': ficha_producao['descricao'],
+                'equipamento': ficha_producao['equipamento'][0]['tipo_id'],
+                'componentes': componente_selected_arr
             })
         return render(request, 'ficha_producao/atualizar.html', {'form': form})
 
     except Exception as e:
         return HttpResponse(e)
+
+
+def getComponentesIds(data_ficha_producao):
+    componente_selected_arr = []
+    for detalhe in data_ficha_producao.get('detalhe_ficha_producao', []):
+        componentes_array = detalhe.get('componente', [])
+        for componente in componentes_array:
+            id_componente = componente.get('id')
+            if id_componente is not None:
+                componente_selected_arr.append(id_componente)
+    return componente_selected_arr

@@ -32,7 +32,7 @@ class FormComponente(forms.Form):
 class FormFichaProducao(forms.Form):
     quantidade = forms.IntegerField(label='Quantidade Equipamentos', widget=forms.NumberInput(attrs={'class': 'form-control'}))
     tipo_mao_obra = forms.ChoiceField(label='Tipo Mão de Obra', widget=forms.Select(attrs={'class': 'form-control'}))
-    horas = forms.IntegerField(label='Horas', widget=forms.NumberInput(attrs={'class': 'form-control'}), required=False)
+    horas = forms.IntegerField(label='Horas de Trabalho', widget=forms.NumberInput(attrs={'class': 'form-control'}), required=False)
     componentes = forms.MultipleChoiceField(label='Componentes', widget=forms.SelectMultiple(attrs={'class': 'form-control'}))    
     descricao = forms.CharField(label='Descrição', widget=forms.Textarea(attrs={'class': 'form-control'}))
     tipo_equipamento = forms.ChoiceField(label='Tipo de Equipamento', widget=forms.Select(attrs={'class': 'form-control'}))
@@ -53,4 +53,9 @@ class FormFichaProducao(forms.Form):
 
         
     def preencher_form(self, dados_form):
-        return
+        self.fields['quantidade'].initial = dados_form['quantidade']
+        self.fields['tipo_mao_obra'].initial = dados_form['tipo_mao_obra']
+        self.fields['horas'].initial = dados_form['horas']
+        self.fields['descricao'].initial = dados_form['descricao']
+        self.fields['tipo_equipamento'].initial = dados_form['equipamento']
+        self.fields['componentes'].initial = dados_form['componentes']
