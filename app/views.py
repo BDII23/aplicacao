@@ -9,6 +9,10 @@ from .vistas.cliente_views import *
 from .vistas.fornecedor_views import *
 from .vistas.utilizador_views import *
 
+
+
+#from .database.mg_equipamento_producao import *
+
 def pagina_inicial(request):
     return render(request, 'index.html')    
 

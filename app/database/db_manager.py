@@ -15,7 +15,7 @@ pg_connection = psycopg2.connect(
 mg_settings = settings.DATABASES[DATABASE_MG]
 mg_connection = MongoClient(
     host=mg_settings['HOST'],
-    port=mg_settings['PORT']
+    port=mg_settings['PORT'],
 )
 
 
@@ -28,11 +28,8 @@ def get_pg_connection():
 def get_pg_settings():
     return pg_settings
 
-def get_mg_cursor():
-    return mg_connection.cursor()
-
-def get_mg_connection():
-    return mg_connection
+def get_mg_collection(collection_name):
+    return mg_connection[mg_settings['NAME']][collection_name]
 
 def get_mg_settings():
     return mg_settings

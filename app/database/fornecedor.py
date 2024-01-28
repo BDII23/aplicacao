@@ -3,7 +3,7 @@ from ..utils import listToJson
 
 def create_fornecedor(p_nome, p_nif, p_email, p_telefone, p_endereco):
     with get_pg_cursor() as cursor:
-        cursor.execute('CALL create_fornecedor(%s, %s, %s, %s, %s)', [p_nome, p_nif, p_email, p_telefone, p_endereco])
+        cursor.execute('CALL create_fornecedor(%s, %s, %s, %s, %s)', [p_nome, str(p_nif), p_email, str(p_telefone), p_endereco])
         get_pg_connection().commit()
 
 def delete_fornecedor(p_id):
@@ -13,7 +13,7 @@ def delete_fornecedor(p_id):
         
 def update_fornecedor(p_id, p_nome, p_nif, p_email, p_telefone, p_endereco):
     with get_pg_cursor() as cursor:
-        cursor.execute('CALL update_fornecedor(%s, %s, %s, %s, %s, %s)', [p_id, p_nome, p_nif, p_email, p_telefone, p_endereco])
+        cursor.execute('CALL update_fornecedor(%s, %s, %s, %s, %s, %s)', [p_id, p_nome, str(p_nif), p_email, str(p_telefone), p_endereco])
         get_pg_connection().commit()
 
 def read_fornecedor():

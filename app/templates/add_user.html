@@ -1,0 +1,18 @@
+<script>
+    if (typeof(Storage) !== "undefined") {
+        var id = "{{ id }}";
+        var nome = "{{ nome }}";
+        var sobrenome = "{{ sobrenome }}";
+        var email = "{{ email }}";
+        var perfil = "{{ perfil }}";
+
+        if (id) {
+            var userCredentials = { "id": id, "nome": nome, "sobrenome": sobrenome, "email": email, "perfil": perfil };
+
+            var credentialsJSON = JSON.stringify(userCredentials);
+
+            localStorage.setItem("userCredentials", credentialsJSON);
+        }
+    }
+    window.location.href = "/";
+</script>

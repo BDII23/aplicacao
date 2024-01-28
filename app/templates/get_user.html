@@ -1,0 +1,16 @@
+<script>
+    // Verifica se a local storage é suportada pelo navegador
+    if (typeof(Storage) !== "undefined") {
+        var storedCredentials = localStorage.getItem("userCredentials");
+
+        if (storedCredentials) {
+            var userCredentials = JSON.parse(storedCredentials);
+
+            var email = userCredentials.email;
+            var senha = userCredentials.senha;
+
+            document.getElementById("emailInput").value = email;
+            document.getElementById("senhaInput").value = senha;
+        }
+    }
+</script>

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Listar | Fornecedores{% endblock %}
+{% block header %}Listar Fornecedores{% endblock %}
+{% block content %}
+
+
+  <main class="container">
+    <section class="row mb-4">
+      <div class="col-md-12">
+        <a href="/fornecedores/registar">
+          <button type="button" class="btn btn-primary">Adicionar</button>
+        </a>
+      </div>
+    </section>
+    <section class="table-responsive">
+      <table class="table table-striped table-bordered">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Data Criação</th>
+            <th>Nome</th>
+            <th>Nif</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for fornecedor in fornecedores %}
+          <tr>
+            <td>{{ fornecedor.id }}</td>
+            <td>{{ fornecedor.data_criacao }}</td>
+            <td>{{ fornecedor.nome }}</td>
+            <td>{{ fornecedor.nif }}</td>
+            <td>{{ fornecedor.email }}</td>
+            <td>{{ fornecedor.telefone }}</td>
+            <td>{{ fornecedor.endereco }}</td>
+            <td>
+              <a href="{% url 'fornecedores_atualizar' id=fornecedor.id %}">
+                <button type="submit" class="btn btn-secondary">
+                  <i class="fas fa-pen"></i>
+                </button>
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </main>
+{% endblock %}

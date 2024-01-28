@@ -30,3 +30,8 @@ def readjson_utilizador():
     with get_pg_cursor() as cursor:
         cursor.callproc('readjson_utilizador')
         return listToJson(cursor.fetchall())
+
+def login_utilizador(email, senha):
+    with get_pg_cursor() as cursor:
+        cursor.execute('SELECT login_utilizador(%s, %s)', [email, senha])
+        return cursor.fetchone()

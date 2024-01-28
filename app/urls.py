@@ -14,14 +14,16 @@ urlpatterns = [
     path('clientes/registar', views.clientes_registar, name='clientes_registar'),
     path('clientes/atualizar/<int:id>', views.clientes_atualizar, name='clientes_atualizar'),
 
-    # Clientes
+    # Fornecedores
     path('fornecedores/listar', views.fornecedores_listar, name='fornecedores_listar'),
     path('fornecedores/registar', views.fornecedores_registar, name='fornecedores_registar'),
     path('fornecedores/atualizar/<int:id>', views.fornecedores_atualizar, name='fornecedores_atualizar'),
 
-    # Clientes
+    # Utilizadores
     path('utilizadores/listar', views.utilizadores_listar, name='utilizadores_listar'),
+    path('utilizadores/listar/id/<int:id>', views.utilizadores_listar_id, name='utilizadores_listar_id'),
     path('utilizadores/registar', views.utilizadores_registar, name='utilizadores_registar'),
+    path('utilizadores/iniciar-sessao', views.utilizadores_iniciar_sessao, name='utilizadores_iniciar_sessao'),
     path('utilizadores/atualizar/<int:id>', views.utilizadores_atualizar, name='utilizadores_atualizar'),
 
     # Equipamentos

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Listar | Utilizador{% endblock %}
+{% block header %}Listar Utilizador{% endblock %}
+{% block content %}
+
+
+  <main class="container">
+    <section>
+        <div class="d-flex">
+            <p>ID: </p>
+            <p>{{ utilizador.id }}</p>
+        </div>
+        <div class="d-flex">
+            <p>Data Criação: </p>
+            <p>{{ utilizador.data_criacao }}</p>
+        </div>
+        <div class="d-flex">
+            <p>Nome Completo: </p>
+            <p>{{ utilizador.nome }} {{ utilizador.sobrenome }}</p>
+        </div>
+        <div class="d-flex">
+            <p>Email: </p>
+            <p>{{ utilizador.email }}</p>
+        </div>
+    </section>
+</main>
+{% endblock %}

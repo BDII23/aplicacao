@@ -22,3 +22,7 @@ class FormUtilizadores(forms.Form):
     def carregar_opcoes(self):
         perfis = readjson_utilizador_perfil()
         self.fields['perfil'].choices = [(perfil['id'], perfil['perfil']) for perfil in perfis]
+
+class FormUtilizadoresIniciarSessao(forms.Form):
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    senha = forms.CharField(label='Senha', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
