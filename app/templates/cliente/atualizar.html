@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Atualizar | Componentes{% endblock %}
+{% block header %}Atualizar Componente{% endblock %}
+{% block content %}
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+{% endblock %}

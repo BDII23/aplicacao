@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Registar | Componentes{% endblock %}
+{% block header %}Registar Componente{% endblock %}
+{% block content %}
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+{% endblock %}
