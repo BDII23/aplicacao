@@ -3,16 +3,18 @@ from ..utils import listToJson
 
 def delete_estado_guia_remessa(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('delete_estado_guia_remessa', [p_id])
+        cursor.execute('CALL delete_estado_guia_remessa(%s)', [p_id])
+        get_pg_connection().commit()
 
 def create_estado_guia_remessa(p_estado):
     with get_pg_cursor() as cursor:
-        cursor.callproc('create_estado_guia_remessa', [p_estado])
+        cursor.execute('CALL create_estado_guia_remessa(%s)', [p_estado])
         get_pg_connection().commit()
-
+        
 def update_estado_guia_remessa(p_id, p_estado):
     with get_pg_cursor() as cursor:
-        cursor.callproc('update_estado_guia_remessa', [p_id, p_estado])
+        cursor.execute('CALL update_estado_guia_remessa(%s, %s)', [p_id, p_estado])
+        get_pg_connection().commit()
 
 def read_estado_guia_remessa():
     with get_pg_cursor() as cursor:
@@ -22,7 +24,7 @@ def read_estado_guia_remessa():
 def readone_estado_guia_remessa(p_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_estado_guia_remessa', [p_id])
-        return cursor.fetchall()
+        return listToJson(cursor.fetchone())
 
 def readjson_estado_guia_remessa():
     with get_pg_cursor() as cursor:

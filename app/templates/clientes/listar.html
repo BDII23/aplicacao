@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block title %}Listar | Componentes{% endblock %}
-{% block header %}Listar Componentes{% endblock %}
+{% block title %}Listar | Clientes{% endblock %}
+{% block header %}Listar Clientes{% endblock %}
 {% block content %}
 
 
   <main class="container">
     <section class="row mb-4">
       <div class="col-md-12">
-        <a href="/componentes/registar">
+        <a href="/clientes/registar">
           <button type="button" class="btn btn-primary">Adicionar</button>
         </a>
       </div>
@@ -18,23 +18,19 @@
           <tr>
             <th>ID</th>
             <th>Data Criação</th>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-            <th>Tipo</th>
-            <th>Armazem</th>
+            <th>Email</th>
+            <th>Nome</th>
           </tr>
         </thead>
         <tbody>
-          {% for componente in componentes %}
+          {% for cliente in clientes %}
           <tr>
-            <td>{{ componente.id }}</td>
-            <td>{{ componente.data_criacao }}</td>
-            <td>{{ componente.descricao }}</td>
-            <td>{{ componente.quantidade }}</td>
-            <td>{{ componente.tipo_componente.0.tipo }}</td>
-            <td>{{ componente.armazem.0.endereco }}</td>
+            <td>{{ cliente.id }}</td>
+            <td>{{ cliente.data_criacao }}</td>
+            <td>{{ cliente.email }}</td>
+            <td>{{ cliente.nome }}</td>
             <td>
-              <a href="{% url 'componentes_atualizar' id=componente.id %}">
+              <a href="{% url 'clientes_atualizar' id=cliente.id %}">
                 <button type="submit" class="btn btn-secondary">
                   <i class="fas fa-pen"></i>
                 </button>

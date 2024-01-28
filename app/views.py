@@ -1,16 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .database.detalhe_encomenda_fornecedor import *
-from .database.componente import *
-from .database.armazem import *
-from .database.equipamento import *
-from .database.tipo_componente import *
-from .database.encomenda_cliente import * 
 from .forms import *
 
 # Vistas
 from .vistas.componentes_views import *
 from .vistas.fichaproducao_views import *
+from .vistas.cliente_views import *
+from .vistas.fornecedor_views import *
+from .vistas.utilizador_views import *
 
 def pagina_inicial(request):
     return render(request, 'index.html')    

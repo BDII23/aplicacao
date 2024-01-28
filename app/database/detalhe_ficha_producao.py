@@ -3,16 +3,18 @@ from ..utils import listToJson
 
 def delete_detalhe_ficha_producao(detalhe_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('delete_detalhe_ficha_producao', [detalhe_id])
+        cursor.execute('CALL delete_detalhe_ficha_producao(%s)', [detalhe_id])
+        get_pg_connection().commit()
 
 def create_detalhe_ficha_producao(p_descricao, p_componente_id, p_ficha_producao_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('create_detalhe_ficha_producao', [p_descricao, p_componente_id, p_ficha_producao_id])
+        cursor.execute('CALL create_detalhe_ficha_producao(%s, %s, %s)', [p_descricao, p_componente_id, p_ficha_producao_id])
         get_pg_connection().commit()
 
 def update_detalhe_ficha_producao(p_detalhe_id, p_descricao, p_componente_id, p_ficha_producao_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('update_detalhe_ficha_producao', [p_detalhe_id, p_descricao, p_componente_id, p_ficha_producao_id])
+        cursor.execute('CALL update_detalhe_ficha_producao(%s, %s, %s, %s)', [p_detalhe_id, p_descricao, p_componente_id, p_ficha_producao_id])
+        get_pg_connection().commit()
 
 def read_detalhe_ficha_producao():
     with get_pg_cursor() as cursor:
@@ -22,7 +24,7 @@ def read_detalhe_ficha_producao():
 def readone_detalhe_ficha_producao(p_detalhe_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_detalhe_ficha_producao', [p_detalhe_id])
-        return cursor.fetchall()
+        return listToJson(cursor.fetchone())
 
 def readjson_detalhe_ficha_producao():
     with get_pg_cursor() as cursor:

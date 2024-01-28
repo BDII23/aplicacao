@@ -9,6 +9,21 @@ urlpatterns = [
     path('componentes/registar', views.componentes_registar, name='componentes_registar'),
     path('componentes/atualizar/<int:id>', views.componentes_atualizar, name='componentes_atualizar'),
     
+    # Clientes
+    path('clientes/listar', views.clientes_listar, name='clientes_listar'),
+    path('clientes/registar', views.clientes_registar, name='clientes_registar'),
+    path('clientes/atualizar/<int:id>', views.clientes_atualizar, name='clientes_atualizar'),
+
+    # Clientes
+    path('fornecedores/listar', views.fornecedores_listar, name='fornecedores_listar'),
+    path('fornecedores/registar', views.fornecedores_registar, name='fornecedores_registar'),
+    path('fornecedores/atualizar/<int:id>', views.fornecedores_atualizar, name='fornecedores_atualizar'),
+
+    # Clientes
+    path('utilizadores/listar', views.utilizadores_listar, name='utilizadores_listar'),
+    path('utilizadores/registar', views.utilizadores_registar, name='utilizadores_registar'),
+    path('utilizadores/atualizar/<int:id>', views.utilizadores_atualizar, name='utilizadores_atualizar'),
+
     # Equipamentos
     path('equipamentos/listar', views.equipamentos_listar, name='equipamentos_listar'),
     path('equipamentos/registar', views.equipamentos_registar, name='equipamentos_registar'),

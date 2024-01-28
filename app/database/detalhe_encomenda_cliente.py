@@ -1,18 +1,20 @@
 from .db_manager import *
 from ..utils import listToJson
 
-def delete_detalhe_encomenda_cliente(_id):
-    with get_pg_cursor() as cursor:
-        cursor.callproc('delete_detalhe_encomenda_cliente', [_id])
-
 def create_detalhe_encomenda_cliente(_quantidade, _custo_unidade, _equipamento_id, _encomenda_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('create_detalhe_encomenda_cliente', [_quantidade, _custo_unidade, _equipamento_id, _encomenda_id])
+        cursor.execute('CALL create_detalhe_encomenda_cliente(%s, %s, %s, %s)', [_quantidade, _custo_unidade, _equipamento_id, _encomenda_id])
+        get_pg_connection().commit()
+
+def delete_detalhe_encomenda_cliente(_id):
+    with get_pg_cursor() as cursor:
+        cursor.execute('CALL delete_detalhe_encomenda_cliente(%s)', [_id])
         get_pg_connection().commit()
 
 def update_detalhe_encomenda_cliente(_id, _quantidade, _custo_unidade, _equipamento_id, _encomenda_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('update_detalhe_encomenda_cliente', [_id, _quantidade, _custo_unidade, _equipamento_id, _encomenda_id])
+        cursor.execute('CALL update_detalhe_encomenda_cliente(%s, %s, %s, %s, %s)', [_id, _quantidade, _custo_unidade, _equipamento_id, _encomenda_id])
+        get_pg_connection().commit()
 
 def read_detalhe_encomenda_cliente():
     with get_pg_cursor() as cursor:
@@ -22,7 +24,7 @@ def read_detalhe_encomenda_cliente():
 def readone_detalhe_encomenda_cliente(_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_detalhe_encomenda_cliente', [_id])
-        return cursor.fetchall()
+        return listToJson(cursor.fetchone())
 
 def readjson_detalhe_encomenda_cliente():
     with get_pg_cursor() as cursor:

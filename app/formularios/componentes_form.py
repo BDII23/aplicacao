@@ -1,9 +1,6 @@
 from django import forms
 from ..database.armazem import *
 from ..database.tipo_componente import * 
-from ..database.tipo_equipamento import * 
-from ..database.tipo_mao_obra import * 
-from ..database.componente import * 
 
 
 class FormComponente(forms.Form):

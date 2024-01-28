@@ -24,7 +24,7 @@ def read_componente():
 def readone_componente(p_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_componente', [p_id])
-        return getFirstElement(cursor.fetchall())
+        return listToJson(cursor.fetchone())
 
 def readjson_componente():
     with get_pg_cursor() as cursor:
