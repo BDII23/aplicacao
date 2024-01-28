@@ -33,7 +33,7 @@ def utilizadores_atualizar(request, id):
         if request.method == 'POST':
             form = FormUtilizadores(request.POST)
             if form.is_valid():
-                create_utilizador(id,
+                update_utilizador(id,
                     form.cleaned_data['email'], 
                     form.cleaned_data['nome'], 
                     form.cleaned_data['sobrenome'], 
@@ -47,7 +47,7 @@ def utilizadores_atualizar(request, id):
                 'email': utilizador['email'],
                 'nome': utilizador['nome'],
                 'sobrenome': utilizador['sobrenome'],
-                'perfil': utilizador['perfil']
+                'perfil': utilizador['perfil_id']
             })
         return render(request, 'utilizadores/atualizar.html', {'form': form})
 

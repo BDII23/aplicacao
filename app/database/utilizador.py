@@ -6,9 +6,9 @@ def create_utilizador(p_email, p_senha, p_nome, p_sobrenome, p_perfil_id):
         cursor.execute('CALL create_utilizador(%s, %s, %s, %s, %s)', [p_email, p_senha, p_nome, p_sobrenome, int(p_perfil_id)])
         get_pg_connection().commit()
 
-def update_utilizador(p_id, p_email, p_senha, p_nome, p_sobrenome, p_perfil_id):
+def update_utilizador(p_id, p_email, p_nome, p_sobrenome, p_perfil_id):
     with get_pg_cursor() as cursor:
-        cursor.execute('CALL update_utilizador(%s, %s, %s, %s, %s, %s)', [p_id, p_email, p_senha, p_nome, p_sobrenome, p_perfil_id])
+        cursor.execute('CALL update_utilizador(%s, %s, %s, %s, %s)', [p_id, p_email, p_nome, p_sobrenome, p_perfil_id])
         get_pg_connection().commit()
 
 def delete_utilizador(p_id):

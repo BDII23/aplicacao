@@ -16,7 +16,8 @@ class FormUtilizadores(forms.Form):
     def preencher_form(self, dados_form):
         self.fields['email'].initial = dados_form['email']
         self.fields['nome'].initial = dados_form['nome']
-        self.fields['nif'].initial = dados_form['nif']
+        self.fields['sobrenome'].initial = dados_form['sobrenome']
+        self.fields['perfil'].initial = dados_form['perfil']
     
     def carregar_opcoes(self):
         perfis = readjson_utilizador_perfil()
