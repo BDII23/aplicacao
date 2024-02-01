@@ -1,7 +1,9 @@
 from django import forms
+import json
 from ..database.tipo_equipamento import * 
 from ..database.tipo_mao_obra import * 
 from ..database.componente import * 
+
 
 class FormFichaProducao(forms.Form):
     quantidade = forms.IntegerField(label='Quantidade Equipamentos', widget=forms.NumberInput(attrs={'class': 'form-control'}))
@@ -10,10 +12,21 @@ class FormFichaProducao(forms.Form):
     componentes = forms.MultipleChoiceField(label='Componentes', widget=forms.SelectMultiple(attrs={'class': 'form-control'}))    
     descricao = forms.CharField(label='Descrição', widget=forms.Textarea(attrs={'class': 'form-control'}))
     tipo_equipamento = forms.ChoiceField(label='Tipo de Equipamento', widget=forms.Select(attrs={'class': 'form-control'}))
+    atributos_equipamento = forms.CharField(label='Atributos do Equipamento', widget=forms.Textarea(attrs={'class': 'form-control'}))
 
     def __init__(self, *args, **kwargs):
         super(FormFichaProducao, self).__init__(*args, **kwargs)
         self.carregar_opcoes()
+    
+    def clean_jsonfield(self):
+        jdata = self.cleaned_data['atributos_equipamento']
+        try:
+            return json.loads(jdata)
+        except:
+            raise forms.ValidationError("Dados inválidos nos Atributos do Equipamento")
+    
+    def adicionar_campo_producao():
+        return
 
     def carregar_opcoes(self):
         tipos_mao_obra = readjson_tipo_mao_obra()

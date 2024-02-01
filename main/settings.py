@@ -80,7 +80,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': PASS,
         'HOST': 'localhost', 
-        'PORT': 5433,
+        'PORT': 5432,
     },
     DATABASE_MG: {
         'ENGINE': 'djongo',

@@ -1,11 +1,12 @@
 from .db_manager import *
-from ..utils import listToJson
+from ..utils import listToJson, getOnlyElement
 
 
 def create_ficha_producao(quantidade_equipamentos, descricao, horas, utilizador_id, tipo_mao_obra_id, tipo_equipamento_id, componentes):
     with get_pg_cursor() as cursor:
-        cursor.execute('CALL create_ficha_producao(%s, %s, %s, %s, %s, %s, %s)', [quantidade_equipamentos, descricao, horas, utilizador_id, int(tipo_mao_obra_id), int(tipo_equipamento_id), list(map(int, componentes))])
+        cursor.execute('SELECT * FROM create_ficha_producao(%s, %s, %s, %s, %s, %s, %s)', [quantidade_equipamentos, descricao, horas, utilizador_id, int(tipo_mao_obra_id), int(tipo_equipamento_id), list(map(int, componentes))])
         get_pg_connection().commit()
+        return getOnlyElement(str(cursor.fetchone()))
 
 def update_ficha_producao(ficha_id, quantidade_equipamentos, descricao, horas, utilizador_id, tipo_mao_obra_id, tipo_equipamento_id, componentes):
     with get_pg_cursor() as cursor:

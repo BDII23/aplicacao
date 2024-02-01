@@ -5,6 +5,7 @@ from ..database.detalhe_ficha_producao import *
 from ..database.tipo_mao_obra import *
 from ..database.componente import *
 from ..database.equipamento import *
+from ..database.mg_equipamento_producao import *
 from ..user import *
 from ..forms import *
 
@@ -34,8 +35,10 @@ def fichaproducoes_registar(request):
                 _descricao = form.cleaned_data['descricao']
                 _componentes = form.cleaned_data['componentes']
                 _tipo_equipamento = form.cleaned_data['tipo_equipamento']
-                print(_quantidade, _descricao, 0, get_logged_user(), _tipo_mao_obra, _tipo_equipamento, _componentes)
-                create_ficha_producao(_quantidade, _descricao, 0, get_logged_user(), _tipo_mao_obra, _tipo_equipamento, _componentes)
+                _atributos_equipamento = form.clean_jsonfield()
+                ficha_id = create_ficha_producao(_quantidade, _descricao, 0, get_logged_user(), _tipo_mao_obra, _tipo_equipamento, _componentes)
+                print(_atributos_equipamento)
+                create_equipamento_producao(_atributos_equipamento)
                 return redirect("/")
         else:
             form = FormFichaProducao()
@@ -64,7 +67,7 @@ def fichaproducoes_atualizar(request, id):
         else:
             form = FormFichaProducao()
             ficha_producao = readone_ficha_producao(id)
-            componente_selected_arr = getComponentesIds(ficha_producao)
+            componente_selected_arr = make_array_of_componentes_ids(ficha_producao)
             
             print(ficha_producao)
             form.preencher_form({
@@ -81,7 +84,7 @@ def fichaproducoes_atualizar(request, id):
         return HttpResponse(e)
 
 
-def getComponentesIds(data_ficha_producao):
+def make_array_of_componentes_ids(data_ficha_producao):
     componente_selected_arr = []
     for detalhe in data_ficha_producao.get('detalhe_ficha_producao', []):
         componentes_array = detalhe.get('componente', [])
