@@ -9,7 +9,6 @@ from .encomenda_cliente import *
 from .encomenda_fornecedor import *
 from .equipamento import *
 from .estado_encomenda import *
-from .estado_guia_remessa import *
 from .fatura_cliente import *
 from .fatura_fornecedor import *
 from .ficha_producao import *
