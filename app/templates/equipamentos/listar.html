@@ -18,6 +18,7 @@
           <tr>
             <th>ID</th>
             <th>Data Criação</th>
+            <th>Stock</th>
             <th>Tipo</th>
           </tr>
         </thead>
@@ -26,6 +27,7 @@
           <tr>
             <td>{{ equipamento.id }}</td>
             <td>{{ equipamento.data_criacao }}</td>
+            <td>{{ equipamento.quantidade }}</td>
             <td>{{ equipamento.tipo_equipamento.0.tipo }}</td>
             <td>
               <a href="{% url 'equipamentos_listar_id' id=equipamento.id %}">
