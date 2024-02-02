@@ -28,8 +28,9 @@ urlpatterns = [
 
     # Equipamentos
     path('equipamentos/listar', views.equipamentos_listar, name='equipamentos_listar'),
+    path('equipamentos/listar/id/<int:id>', views.equipamentos_listar_id, name='equipamentos_listar_id'),
     path('equipamentos/registar', views.equipamentos_registar, name='equipamentos_registar'),
-    #path('equipamentos/atualizar/<int:id>', views.equipamentos_atualizar, name='equipamentos_atualizar'),
+    path('equipamentos/atualizar/<int:id>', views.equipamentos_atualizar, name='equipamentos_atualizar'),
     
     # Ficha Producao, Componentes, Equipamento...
     path('fichaproducao/listar', views.fichaproducoes_listar, name='fichaproducoes_listar'),

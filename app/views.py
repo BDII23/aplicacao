@@ -8,6 +8,7 @@ from .vistas.fichaproducao_views import *
 from .vistas.cliente_views import *
 from .vistas.fornecedor_views import *
 from .vistas.utilizador_views import *
+from .vistas.equipamento_views import *
 
 
 
@@ -29,21 +30,7 @@ def compras_historico_listar(request):
 
 # Equipamentos #
     
-def equipamentos_listar(request):
-    try:
-        equipamentos = readjson_equipamento()
-        return render(request, 'equipamentos/equipamentos-listar.html', {'lista_equipamentos': equipamentos})
-    except Exception as e:
-        return HttpResponse(e)
 
-# n terminado
-def equipamentos_registar(request):
-    try:
-        equipamentos = create_equipamento()
-        return render(request, 'equipamentos/equipamento-register.html', {'equipamentos': equipamentos})
-        
-    except Exception as e:
-        return HttpResponse(e)
 
 
     

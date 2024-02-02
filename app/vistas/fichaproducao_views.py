@@ -20,8 +20,9 @@ def fichaproducoes_listar(request):
 def fichaproducoes_listar_id(request, id):
     try:
         ficha_producao = readone_ficha_producao(id)
-        print(ficha_producao)
-        return render(request, 'ficha_producao/listar_id.html', {'ficha_producao': ficha_producao})
+        equipamento = readone_equipamento(ficha_producao['equipamento_id'])
+        equipamento_producao = readone_equipamento_producao(ficha_producao['equipamento_id'])
+        return render(request, 'ficha_producao/listar_id.html', {'ficha_producao': ficha_producao, 'equipamento': equipamento, 'equipamento_producao': equipamento_producao})
     except Exception as e:
         return HttpResponse(e)
 
@@ -37,8 +38,7 @@ def fichaproducoes_registar(request):
                 _tipo_equipamento = form.cleaned_data['tipo_equipamento']
                 _atributos_equipamento = form.clean_jsonfield()
                 ficha_id = create_ficha_producao(_quantidade, _descricao, 0, get_logged_user(), _tipo_mao_obra, _tipo_equipamento, _componentes)
-                print(_atributos_equipamento)
-                create_equipamento_producao(_atributos_equipamento)
+                create_equipamento_producao(ficha_id, _atributos_equipamento)
                 return redirect("/")
         else:
             form = FormFichaProducao()
