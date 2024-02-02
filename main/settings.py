@@ -1,5 +1,5 @@
 from pathlib import Path
-from db_password import PASS
+from aplicacao.db_creedentials import PASS, PORT
 from constants import DATABASE_PG, DATABASE_MG
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -80,7 +80,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': PASS,
         'HOST': 'localhost', 
-        'PORT': 5432,
+        'PORT': PORT,
     },
     DATABASE_MG: {
         'ENGINE': 'djongo',
