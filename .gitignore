@@ -1,6 +1,6 @@
 # .gitignore
 
-/db_password.py
+/db_creedentials.py
 /app/__pycache__
 /main/__pycache__
 /__pycache__
