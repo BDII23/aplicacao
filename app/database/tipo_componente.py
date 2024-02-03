@@ -16,11 +16,6 @@ def update_tipo_componente(p_id, p_tipo):
         cursor.execute('CALL update_tipo_componente(%s, %s)', [p_id, p_tipo])
         get_pg_connection().commit()
 
-def read_tipo_componente():
-    with get_pg_cursor() as cursor:
-        cursor.callproc('read_tipo_componente')
-        return cursor.fetchall()
-
 def readone_tipo_componente(p_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_tipo_componente', [p_id])

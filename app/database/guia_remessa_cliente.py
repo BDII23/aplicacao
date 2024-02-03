@@ -16,14 +16,9 @@ def update_guia_remessa_cliente(p_id, p_data_envio, p_data_entrega, p_endereco_o
         cursor.execute('CALL update_guia_remessa_cliente(%s, %s, %s, %s, %s, %s, %s, %s)', [p_id, p_data_envio, p_data_entrega, p_endereco_origem, p_endereco_chegada, p_estado_id, p_detalhe_encomenda_id, p_utilizador_id])
         get_pg_connection().commit()
 
-def read_guia_remessa_cliente():
+def readone_guia_remessa_cliente(p_id):
     with get_pg_cursor() as cursor:
-        cursor.callproc('read_guia_remessa_cliente')
-        return cursor.fetchall()
-
-def read_one_guia_remessa_cliente(p_id):
-    with get_pg_cursor() as cursor:
-        cursor.callproc('read_one_guia_remessa_cliente', [p_id])
+        cursor.callproc('readone_guia_remessa_cliente', [p_id])
         return listToJson(cursor.fetchone())
 
 def readjson_guia_remessa_cliente():

@@ -16,11 +16,6 @@ def update_detalhe_ficha_producao(p_detalhe_id, p_descricao, p_componente_id, p_
         cursor.execute('CALL update_detalhe_ficha_producao(%s, %s, %s, %s)', [p_detalhe_id, p_descricao, p_componente_id, p_ficha_producao_id])
         get_pg_connection().commit()
 
-def read_detalhe_ficha_producao():
-    with get_pg_cursor() as cursor:
-        cursor.callproc('read_detalhe_ficha_producao')
-        return cursor.fetchall()
-
 def readone_detalhe_ficha_producao(p_detalhe_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_detalhe_ficha_producao', [p_detalhe_id])

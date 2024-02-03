@@ -16,11 +16,6 @@ def delete_estado_encomenda(p_id):
         cursor.execute('CALL delete_estado_encomenda(%s)', [p_id])
         get_pg_connection().commit()
 
-def read_estado_encomenda():
-    with get_pg_cursor() as cursor:
-        cursor.callproc('read_estado_encomenda')
-        return cursor.fetchall()
-
 def readone_estado_encomenda(p_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_estado_encomenda', [p_id])

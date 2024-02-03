@@ -16,11 +16,6 @@ def update_detalhe_encomenda_cliente(_id, _quantidade, _custo_unidade, _equipame
         cursor.execute('CALL update_detalhe_encomenda_cliente(%s, %s, %s, %s, %s)', [_id, _quantidade, _custo_unidade, _equipamento_id, _encomenda_id])
         get_pg_connection().commit()
 
-def read_detalhe_encomenda_cliente():
-    with get_pg_cursor() as cursor:
-        cursor.callproc('read_detalhe_encomenda_cliente')
-        return cursor.fetchall()
-
 def readone_detalhe_encomenda_cliente(_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_detalhe_encomenda_cliente', [_id])

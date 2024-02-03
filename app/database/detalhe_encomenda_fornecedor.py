@@ -16,11 +16,6 @@ def delete_detalhe_encomenda_fornecedor(p_id):
         cursor.execute('CALL delete_detalhe_encomenda_fornecedor(%s)', [p_id])
         get_pg_connection().commit()
 
-def read_detalhe_encomenda_fornecedor():
-    with get_pg_cursor() as cursor:
-        cursor.callproc('read_detalhe_encomenda_fornecedor')
-        return cursor.fetchall()
-
 def readone_detalhe_encomenda_fornecedor(p_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_detalhe_encomenda_fornecedor', [p_id])

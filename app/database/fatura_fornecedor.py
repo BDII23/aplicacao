@@ -16,11 +16,6 @@ def update_fatura_fornecedor(p_id, p_descricao):
         cursor.execute('CALL update_fatura_fornecedor(%s, %s)', [p_id, p_descricao])
         get_pg_connection().commit()
 
-def read_fatura_fornecedor():
-    with get_pg_cursor() as cursor:
-        cursor.callproc('read_fatura_fornecedor')
-        return cursor.fetchall()
-
 def readone_fatura_fornecedor(p_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_fatura_fornecedor', [p_id])

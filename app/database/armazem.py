@@ -16,11 +16,6 @@ def delete_armazem(p_id):
         cursor.execute('CALL delete_armazem(%s)', [p_id])
         get_pg_connection().commit()
 
-def read_armazem():
-    with get_pg_cursor() as cursor:
-        cursor.callproc('read_armazem')
-        return cursor.fetchall()
-
 def readone_armazem(p_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_armazem', [p_id])

@@ -19,7 +19,7 @@ def pagina_inicial(request):
 
 def compras_historico_listar(request):
     try:
-        compras = read_encomenda_cliente()
+        compras = readjson_encomenda_cliente()
         print("Detalhes de compras de cliente : %s", compras)
 
         return render(request, 'compras/historicocompras.html', {'compras': compras})

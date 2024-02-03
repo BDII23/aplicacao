@@ -16,11 +16,6 @@ def delete_utilizador_perfil(p_id):
         cursor.execute('CALL delete_utilizador_perfil(%s)', [p_id])
         get_pg_connection().commit()
 
-def read_utilizador_perfil():
-    with get_pg_cursor() as cursor:
-        cursor.callproc('read_utilizador_perfil')
-        return cursor.fetchall()
-
 def readone_utilizador_perfil(p_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_utilizador_perfil', [p_id])

@@ -17,11 +17,6 @@ def delete_cliente(p_id):
         cursor.execute('CALL delete_cliente(%s)', [p_id])
         get_pg_connection().commit()
 
-def read_cliente():
-    with get_pg_cursor() as cursor:
-        cursor.callproc('read_cliente')
-        return cursor.fetchall()
-
 def readone_cliente(p_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_cliente', [p_id])

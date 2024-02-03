@@ -16,11 +16,6 @@ def delete_tipo_equipamento(p_id):
         cursor.execute('CALL delete_tipo_equipamento(%s)', [p_id])
         get_pg_connection().commit()
 
-def read_tipo_equipamento():
-    with get_pg_cursor() as cursor:
-        cursor.callproc('read_tipo_equipamento')
-        return cursor.fetchall()
-
 def readone_tipo_equipamento(p_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_tipo_equipamento', [p_id])

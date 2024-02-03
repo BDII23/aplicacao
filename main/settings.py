@@ -1,5 +1,5 @@
 from pathlib import Path
-from aplicacao.db_creedentials import PASS, PORT
+from main.db_creedentials import PASS, PORT
 from constants import DATABASE_PG, DATABASE_MG
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.

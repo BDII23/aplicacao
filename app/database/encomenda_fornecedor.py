@@ -15,11 +15,6 @@ def update_encomenda_fornecedor(in_id, in_estado_id, in_fornecedor_id, in_fatura
     with get_pg_cursor() as cursor:
         cursor.execute('CALL update_encomenda_fornecedor(%s, %s, %s, %s)', [in_id, in_estado_id, in_fornecedor_id, in_fatura_id])
         get_pg_connection().commit()
-        
-def read_encomenda_fornecedor():
-    with get_pg_cursor() as cursor:
-        cursor.callproc('read_encomenda_fornecedor')
-        return cursor.fetchall()
 
 def readone_encomenda_fornecedor(in_id):
     with get_pg_cursor() as cursor:

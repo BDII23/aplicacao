@@ -16,11 +16,6 @@ def delete_equipamento(in_id):
         cursor.execute('CALL delete_equipamento(%s)', [in_id])
         get_pg_connection().commit()
 
-def read_equipamento():
-    with get_pg_cursor() as cursor:
-        cursor.callproc('read_equipamento')
-        return cursor.fetchall()
-
 def readone_equipamento(in_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_equipamento', [in_id])

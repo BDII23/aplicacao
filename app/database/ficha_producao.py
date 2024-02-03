@@ -17,11 +17,6 @@ def delete_ficha_producao(ficha_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('delete_ficha_producao', [ficha_id])
 
-def read_ficha_producao():
-    with get_pg_cursor() as cursor:
-        cursor.callproc('read_ficha_producao')
-        return cursor.fetchall()
-
 def readone_ficha_producao(_ficha_producao_id):
     with get_pg_cursor() as cursor:
         cursor.callproc('readone_ficha_producao', [_ficha_producao_id])
