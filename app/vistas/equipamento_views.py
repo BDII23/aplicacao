@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from ..database.equipamento import *
 from ..database.mg_equipamento_producao import *
-
+from ..forms import *
 
 def equipamentos_listar(request):
     try:
@@ -11,29 +11,47 @@ def equipamentos_listar(request):
     except Exception as e:
         return HttpResponse(e)
 
-# n terminado
-def equipamentos_registar(request):
-    try:
-        equipamentos = create_equipamento()
-        return render(request, 'equipamentos/registar.html', {'equipamentos': equipamentos})
-        
-    except Exception as e:
-        return HttpResponse(e)
-
 def equipamentos_listar_id(request, id):
     try:
         equipamento = readone_equipamento(id)
         equipamento_producao = readone_equipamento_producao(id)
-        print("equipamentos")
-        print(equipamento)
-        print("equipamento_producao")
-        print(equipamento_producao)
         return render(request, 'equipamentos/listar_id.html', {'equipamento': equipamento, 'equipamento_producao': equipamento_producao})
+    except Exception as e:
+        return HttpResponse(e)
+
+def equipamentos_registar(request):
+    try:
+        if request.method == 'POST':
+            form = FormEquipamentos(request.POST)
+            if form.is_valid():
+                equipamento_id = create_equipamento(form.cleaned_data['tipo_equipamento'])
+                print(equipamento_id)
+                create_equipamento_producao(equipamento_id, form.clean_jsonfield())
+                return redirect("/")
+        else:
+            form = FormEquipamentos()
+        return render(request, 'equipamentos/registar.html', {'form': form})
+
     except Exception as e:
         return HttpResponse(e)
 
 def equipamentos_atualizar(request, id):
     try:
-        return
+        if request.method == 'POST':
+            form = FormEquipamentos(request.POST)
+            if form.is_valid():
+                update_equipamento(id, form.cleaned_data['tipo_equipamento'])
+                update_equipamento_producao(id, form.clean_jsonfield())
+                return redirect("/")
+        else:
+            form = FormEquipamentos()
+            equipamento = readone_equipamento(id)
+            atributos = readone_equipamento_producao(id)
+            form.preencher_form({
+                'tipo_equipamento': equipamento['tipo_id'],
+                'atributos_equipamento': atributos['atributo']
+            })
+        return render(request, 'fornecedores/atualizar.html', {'form': form})
+
     except Exception as e:
         return HttpResponse(e)

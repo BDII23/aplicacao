@@ -43,3 +43,4 @@ class FormFichaProducao(forms.Form):
         self.fields['descricao'].initial = dados_form['descricao']
         self.fields['tipo_equipamento'].initial = dados_form['equipamento']
         self.fields['componentes'].initial = dados_form['componentes']
+        self.fields['atributos_equipamento'].initial = dados_form['atributos_equipamento']

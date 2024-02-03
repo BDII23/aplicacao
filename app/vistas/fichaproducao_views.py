@@ -12,7 +12,6 @@ from ..forms import *
 def fichaproducoes_listar(request):
     try:
         ficha_producao = readjson_ficha_producao()
-        print(ficha_producao)
         return render(request, 'ficha_producao/listar.html', {'ficha_producao': ficha_producao})
     except Exception as e:
         return HttpResponse(e)
@@ -38,7 +37,6 @@ def fichaproducoes_registar(request):
                 _tipo_equipamento = form.cleaned_data['tipo_equipamento']
                 _atributos_equipamento = form.clean_jsonfield()
                 ficha_id = create_ficha_producao(_quantidade, _descricao, 0, get_logged_user(), _tipo_mao_obra, _tipo_equipamento, _componentes)
-                print(ficha_id)
                 create_equipamento_producao(ficha_id, _atributos_equipamento)
                 return redirect("/")
         else:
@@ -62,28 +60,28 @@ def fichaproducoes_atualizar(request, id):
                 _descricao = form.cleaned_data['descricao']
                 _componentes = form.cleaned_data['componentes']
                 _tipo_equipamento = form.cleaned_data['tipo_equipamento']
-                print(_quantidade, _descricao, 0, get_logged_user(), _tipo_mao_obra, _tipo_equipamento, _componentes)
-                update_ficha_producao(id, _quantidade, _descricao, 0, get_logged_user(), _tipo_mao_obra, _tipo_equipamento, _componentes)
+                _atributos_equipamento = form.clean_jsonfield()
+                equipamento_id = update_ficha_producao(id, _quantidade, _descricao, 0, get_logged_user(), _tipo_mao_obra, _tipo_equipamento, _componentes)
+                update_equipamento_producao(equipamento_id, _atributos_equipamento)
                 return redirect("/")
         else:
             form = FormFichaProducao()
             ficha_producao = readone_ficha_producao(id)
             componente_selected_arr = make_array_of_componentes_ids(ficha_producao)
-            
-            print(ficha_producao)
+            equipamento_producao = readone_equipamento_producao(ficha_producao['equipamento'][0]['id'])
             form.preencher_form({
                 'quantidade': ficha_producao['quantidade_equipamentos'],
                 'tipo_mao_obra': ficha_producao['tipo_mao_obra_id'],
                 'horas': ficha_producao['horas'],
                 'descricao': ficha_producao['descricao'],
                 'equipamento': ficha_producao['equipamento'][0]['tipo_id'],
-                'componentes': componente_selected_arr
+                'componentes': componente_selected_arr,
+    			'atributos_equipamento': equipamento_producao['atributo'] if 'atributo' in equipamento_producao and equipamento_producao['atributo'] is not None else ""
             })
         return render(request, 'ficha_producao/atualizar.html', {'form': form})
 
     except Exception as e:
         return HttpResponse(e)
-
 
 def make_array_of_componentes_ids(data_ficha_producao):
     componente_selected_arr = []

@@ -1,14 +1,15 @@
 from .db_manager import *
-from ..utils import listToJson
+from ..utils import listToJson, getOnlyElement
 
-def create_equipamento(in_descricao, in_tipo_id):
+def create_equipamento(in_tipo_id):
     with get_pg_cursor() as cursor:
-        cursor.execute('CALL create_equipamento(%s, %s)', [in_descricao, in_tipo_id])
+        cursor.execute('SELECT * FROM create_equipamento(%s)', [in_tipo_id])
         get_pg_connection().commit()
+        return getOnlyElement(str(cursor.fetchone()))
 
-def update_equipamento(in_id, in_descricao, in_tipo_id):
+def update_equipamento(in_id, in_tipo_id):
     with get_pg_cursor() as cursor:
-        cursor.execute('CALL update_equipamento(%s, %s, %s)', [in_id, in_descricao, in_tipo_id])
+        cursor.execute('CALL update_equipamento(%s, %s)', [in_id, in_tipo_id])
         get_pg_connection().commit()
 
 def delete_equipamento(in_id):

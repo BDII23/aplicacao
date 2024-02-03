@@ -9,19 +9,21 @@ def readone_equipamento_producao(equipamento_id):
     collection = get_mg_collection('equipamento_producao')
     return collection.find_one({"equipamento_id": equipamento_id})
 
-def create_equipamento_producao(equipamento_id, atributos):
+def create_equipamento_producao(equipamento_id, atributo):
     collection = get_mg_collection('equipamento_producao')
-    
-    documento = { "equipamento_id": equipamento_id, "atributo": atributos }
+    print("opa1")
+    documento = { "equipamento_id": equipamento_id, "atributo": atributo }
+    print("opa2")
     
     result = collection.insert_one(documento)
+    print("opa3")
     return result.inserted_id
 
-def update_equipamento_producao(equipamento_id, atributos):
+def update_equipamento_producao(equipamento_id, atributo):
     collection = get_mg_collection('equipamento_producao')
     result = collection.update_one(
         {"equipamento_id": equipamento_id},
-        {"$set": {"atributos": atributos}}
+        {"$set": {"atributo": atributo}}
     )
     return result.modified_count
 

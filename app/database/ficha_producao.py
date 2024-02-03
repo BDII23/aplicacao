@@ -10,8 +10,9 @@ def create_ficha_producao(quantidade_equipamentos, descricao, horas, utilizador_
 
 def update_ficha_producao(ficha_id, quantidade_equipamentos, descricao, horas, utilizador_id, tipo_mao_obra_id, tipo_equipamento_id, componentes):
     with get_pg_cursor() as cursor:
-        cursor.execute('CALL update_ficha_producao(%s, %s, %s, %s, %s, %s, %s, %s)', [ficha_id, quantidade_equipamentos, descricao, horas, utilizador_id, int(tipo_mao_obra_id), int(tipo_equipamento_id), list(map(int, componentes))])
+        cursor.execute('SELECT * FROM update_ficha_producao(%s, %s, %s, %s, %s, %s, %s, %s)', [ficha_id, quantidade_equipamentos, descricao, horas, utilizador_id, int(tipo_mao_obra_id), int(tipo_equipamento_id), list(map(int, componentes))])
         get_pg_connection().commit()
+        return getOnlyElement(str(cursor.fetchone()))
 
 def delete_ficha_producao(ficha_id):
     with get_pg_cursor() as cursor:
