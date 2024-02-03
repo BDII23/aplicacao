@@ -1,43 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <title>Fatura de Compra</title>
-</head>
-<body>
-  <div class="container">
-    <h1>Fatura de Compra</h1>
-    <div class="row">
-      <div class="col">
-        <p>Número da Fatura: 12345</p>
-        <p>Data: 06/12/2023</p>
-        <p>Nome da Empresa: Exemplo LTDA</p>
-        <p>Formas de Pagamento: Cartão de Crédito</p>
-        <p>Morada da Empresa: Rua Exemplo, 1234, Cidade, País</p>
-        <p>Endereço de Entrega: Rua de Entrega, 5678, Cidade de Entrega, País de Entrega</p>
-      </div>
+{% extends 'base.html' %}
+{% block title %}Fatura | Compras{% endblock %}
+{% block header %}Fatura Compras{% endblock %}
+{% block content %}
+
+
+
+
+<main class="container">
+  <section class="row mb-4">
+    <div class="col-md-12">
+      <a href="/compra/registar">
+        <button type="button" class="btn btn-primary">Adicionar</button>
+      </a>
     </div>
-    <div class="row">
-      <div class="col">
-        <h2>Equipamentos</h2>
-        <ul>
-          <li>TV Remote: $20.00</li>
-          <li>Celular: $500.00</li>
-          <li>Handbag: $50.00</li>
-          <li>Laptop: $800.00</li>
-          <li>Bottle: $10.00</li>
-        </ul>
-        <p>Total: $1380.00</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <button type="button" class="btn btn-primary">Guardar</button>
-      </div>
-    </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+  </section>
+  <section class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Data Criação</th>
+          <th>Descrição </th>
+          <th>Detalhes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for ficha in ficha_producao %}
+        <tr>
+          <td>{{ fatura_fornecedor.id }}</td>
+          <td>{{ fatura_fornecedor.data_criacao }}</td>
+          <td>{{ fatura_fornecedor.descricao }}</td>
+          <td>
+            <a href="{% url 'compras_listar_id' id=encomenda_fornecedor.id %}">
+              <button type="submit" class="btn btn-secondary">
+                <i class="fas fa-plus"></i>
+              </button>
+            </a>
+          </td>
+          <!--{% for detalhe in ficha.detalhe_ficha_producao %}
+            <td>{{ detalhe.componente.0 }}</td>
+          {% endfor %}-->
+          <td>
+            <a href="{% url 'compras_atualizar' id=encomenda_fornecedor.id %}">
+              <button type="submit" class="btn btn-secondary">
+                <i class="fas fa-pen"></i>
+              </button>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</main>
+{% endblock %}

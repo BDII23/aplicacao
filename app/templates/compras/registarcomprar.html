@@ -1,62 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-  <title>Formulário de Registro</title>
-  <style>
-    body {
-      padding: 50px;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Registar Nova Compra</h1>
-    <form>
-      <div class="form-group">
-        <label for="nomeRemetente">Nome do Remetente</label>
-        <input type="text" class="form-control" id="nomeRemetente" placeholder="Nome do remetente">
-      </div>
-      <div class="form-group">
-        <label for="dataEmissao">Data de Emissão</label>
-        <input type="date" class="form-control" id="dataEmissao" placeholder="Data de emissão">
-      </div>
-      <div class="form-group">
-        <label for="equipamento">Equipamento</label>
-        <select class="form-control" id="equipamento">
-          <option value="laptop">Laptop</option>
-          <option value="smartphone">Smartphone</option>
-          <option value="tablet">Tablet</option>
-          <option value="outro">Outro</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="tipoCompra">Tipo de Compra</label>
-        <select class="form-control" id="tipoCompra">
-          <option value="vista">À Vista</option>
-          <option value="parcelado">Parcelado</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="formaPagamento">Forma de Pagamento</label>
-        <select class="form-control" id="formaPagamento">
-          <option value="credito">Cartão de Crédito</option>
-          <option value="debito">Cartão de Débito</option>
-          <option value="boleto">Boleto Bancário</option>
-          <option value="paypal">PayPal</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="precoTotal">Preço Total</label>
-        <input type="text" class="form-control" id="precoTotal" placeholder="Preço Total">
-      </div>
-      <button type="submit" class="btn btn-secondary">Guardar</button>
-    </form>
-  </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Registar | Encomenda Fornecedor{% endblock %}
+{% block header %}Registar Encomenda Fornecedor{% endblock %}
+{% block content %}
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+	  {{ form.key_value_collection }}
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+{% endblock %}

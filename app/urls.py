@@ -39,9 +39,9 @@ urlpatterns = [
     path('fichaproducao/atualizar/<int:id>', views.fichaproducoes_atualizar, name='fichaproducoes_atualizar'),
     
     # Encomendas, Remessas, Faturas...
-    path('compras/listar', views.compras_historico_listar, name='historico_compras_listar'),
-    #path('compras/registar', views.compras_historico_listar, name='historico_compras_listar'),
-    #path('compras/atualizar/<int:id>', views.compras_historico_listar, name='historico_compras_listar'),
+    path('compras/listar', views.compras_historico_listar, name='compras_listar'),
+    #path('compras/registar', views.compras_historico_listar, name='compras_registrar'),
+    #path('compras/atualizar/<int:id>', views.compras_historico_listar, name='compras_atualizar'),
     
     # Encomendas, Remessas, Faturas...
     #path('vendas/listar', views.vendas_listar, name='vendas_listar'),
