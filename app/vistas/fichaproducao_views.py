@@ -38,6 +38,7 @@ def fichaproducoes_registar(request):
                 _tipo_equipamento = form.cleaned_data['tipo_equipamento']
                 _atributos_equipamento = form.clean_jsonfield()
                 ficha_id = create_ficha_producao(_quantidade, _descricao, 0, get_logged_user(), _tipo_mao_obra, _tipo_equipamento, _componentes)
+                print(ficha_id)
                 create_equipamento_producao(ficha_id, _atributos_equipamento)
                 return redirect("/")
         else:

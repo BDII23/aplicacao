@@ -13,7 +13,7 @@ def clientes_listar(request):
 def clientes_registar(request):
     try:
         if request.method == 'POST':
-            form = FormClientes(request.POST)
+            form = FormClientes(request.POST) 
             if form.is_valid():
                 create_cliente(form.cleaned_data['email'], 
                     form.cleaned_data['senha'], 
@@ -50,3 +50,5 @@ def clientes_atualizar(request, id):
 
     except Exception as e:
         return HttpResponse(e)
+    
+    

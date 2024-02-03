@@ -24,9 +24,6 @@ class FormFichaProducao(forms.Form):
             return json.loads(jdata)
         except:
             raise forms.ValidationError("Dados inválidos nos Atributos do Equipamento")
-    
-    def adicionar_campo_producao():
-        return
 
     def carregar_opcoes(self):
         tipos_mao_obra = readjson_tipo_mao_obra()
