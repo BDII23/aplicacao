@@ -1,80 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Registar nova encomenda</title>
-</head>
-<body>
-  <div class="container">
-    <h1>Registar nova encomenda</h1>
-    <form method="post" action="{% url 'experimentos' %}">
-      {% csrf_token %}
-      <div class="mb-3">
-        <label for="fornecedor" class="form-label">Fornecedor</label>
-        <input type="text" class="form-control" id="fornecedor" placeholder="Ex: ACME, ABC, etc.">
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label for="componente" class="form-label">Componente</label>
-            <input type="text" class="form-control" id="componente" placeholder="Ex: Placa-mãe, processador, etc.">
-          </div>
-          <div class="mb-3">
-            <label for="quantidade" class="form-label">Quantidade</label>
-            <input type="number" class="form-control" id="quantidade" placeholder="Ex: 1, 2, 3, etc.">
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label for="total" class="form-label">Total</label>
-            <input type="text" class="form-control" id="total" disabled readonly>
-          </div>
-          <div class="mb-3">
-            <label for="descricao" class="form-label">Descrição</label>
-            <textarea class="form-control" id="descricao" rows="3"></textarea>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="mb-3">
-            <label for="componente" class="form-label">Adicionar componente</label>
-            <button type="button" class="btn btn-primary" id="adicionar-componente">+</button>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Componente</th>
-                <th>Quantidade</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody id="componentes">
-              <tr>
-                <td>Componente 1</td>
-                <td>2</td>
-                <td>R$ 100,00</td>
-              </tr>
-              <tr>
-                <td>Componente 2</td>
-                <td>42</td>
-                <td>R$ 2.100,00</td>
-              </tr>
-              <tr>
-                <td>Componente 3</td>
-                <td>8</td>
-                <td>R$ 400,00</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-primary">Registar</button>
-    </form>
-  </div>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block title %}Registar | Encomenda Fornecedor{% endblock %}
+{% block header %}Registar Encomenda Fornecedor{% endblock %}
+{% block content %}
+<form method="post" action="">
+    {% csrf_token %}
+    {{ form.as_p }}
+	  {{ form.key_value_collection }}
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+{% endblock %}

@@ -50,6 +50,10 @@ urlpatterns = [
     path('fornecedor/remessas/registar', views.fornecedores_remessas_registar, name='fornecedores_remessas_registar'),
     path('fornecedor/remessas/atualizar/<int:id>', views.fornecedores_remessas_atualizar, name='fornecedores_remessas_atualizar'),
 
+    # Encomendas, Remessas, Faturas...
+    path('compras/listar', views.compras_historico_listar, name='compras_listar'),
+    #path('compras/registar', views.compras_historico_listar, name='compras_registrar'),
+    #path('compras/atualizar/<int:id>', views.compras_historico_listar, name='compras_atualizar'),
     
     # Encomendas do Fornecedor
     path('clientes/encomendas/listar', views.clientes_encomendas_listar, name='clientes_encomendas_listar'),

@@ -1,52 +1,58 @@
-<!-- historico_compras_cliente.html -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <title>Historico de Compras</title>
-  <style>
-    .btn-container {
-      display: flex;
-      justify-content: space-between;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Historico de Compras</h1>
-    <p><strong>Cliente:</strong> {{ cliente_info.nome }}</p>
-    <p><strong>Telefone:</strong> {{ cliente_info.telefone }}</p>
-    <p><strong>Morada:</strong> {{ cliente_info.morada }}</p>
-    
-    <table class="table table-bordered">
-      <tr>
-        <td><h5>ID</h5></td>
-        <td><h5>Data</h5></td>
-        <td><h5>Equipamentos</h5></td>
-        <td><h5>Valor Total</h5></td>
-        <td><h5>Tipo de compra</h5></td>
-        <td><h5>Fatura</h5></td>
-        <td><h5>Ações</h5></td>
-      </tr>
+{% extends 'base.html' %}
+{% block title %}Historico | Compras{% endblock %}
+{% block header %}Historico Compras{% endblock %}
+{% block content %}
 
-      {% for compra in historico_compras %}
-      <tr>
-        <td><p>{{ compra.id }}</p></td>
-        <td><p>{{ compra.data }}</p></td>
-        <td><p>{{ compra.equipamento }}</p></td>
-        <td><p>{{ compra.valor_total }}</p></td>
-        <td><p>{{ compra.tipo_compra }}</p></td>
-        <td><p>{{ compra.fatura }}</p></td>
-        <td class="btn-container">
-          <button class="btn btn-primary">Editar</button>
-          <button class="btn btn-danger">Eliminar</button>
-        </td>
-      </tr>
-      {% endfor %}
+
+
+
+<main class="container">
+  <section class="row mb-4">
+    <div class="col-md-12">
+      <a href="/compra/registar">
+        <button type="button" class="btn btn-primary">Adicionar</button>
+      </a>
+    </div>
+  </section>
+  <section class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Data Criação</th>
+          <th>Estado ID</th>
+          <th>Fornecedor ID</th>
+          <th>Detalhes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for encomenda_fornecedor in encomenda_fornecedores %}
+        <tr>
+          <td>{{ encomenda_fornecedor.id }}</td>
+          <td>{{ encomenda_fornecedor.data_criacao }}</td>
+          <td>{{ encomenda_fornecedor.estado_id }}</td>
+          <td>{{ encomenda_fornecedor.fornecedor_id }}</td>
+          <td>
+            <a href="{% url 'compras_listar_id' id=encomenda_fornecedor.id %}">
+              <button type="submit" class="btn btn-secondary">
+                <i class="fas fa-plus"></i>
+              </button>
+            </a>
+          </td>
+          <!--{% for detalhe in ficha.detalhe_ficha_producao %}
+            <td>{{ detalhe.componente.0 }}</td>
+          {% endfor %}-->
+          <td>
+            <a href="{% url 'compras_atualizar' id=encomenda_fornecedor.id %}">
+              <button type="submit" class="btn btn-secondary">
+                <i class="fas fa-pen"></i>
+              </button>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
     </table>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+  </section>
+</main>
+{% endblock %}
