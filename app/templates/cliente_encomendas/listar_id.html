@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block title %}Listar | Encomendas do Cliente{% endblock %}
+{% block header %}Listar Encomendas do Cliente{% endblock %}
+{% block content %}
+
+
+  <main class="container">
+    <section>
+        <div class="d-flex">
+            <p>ID: </p>
+            <p>{{ encomenda.id }}</p>
+        </div>
+        <div class="d-flex">
+            <p>Data Criação: </p>
+            <p>{{ encomenda.data_criacao }}</p>
+        </div>
+		<div class="d-flex">
+            <p>Estado: </p>
+            <p>{{ encomenda.estado_encomenda.0.estado }}</p>
+        </div>
+        
+		<div class="mt-4">
+            <h4>Cliente</h4>
+			<div class="mt-3">
+				<div class="d-flex">
+					<p>ID: </p>
+					<p>{{ encomenda.cliente.0.id }}</p>
+				</div>
+				<div class="d-flex">
+					<p>Data Criação: </p>
+					<p>{{ encomenda.cliente.0.data_criacao }}</p>
+				</div>
+				<div class="d-flex">
+					<p>nome: </p>
+					<p>{{ encomenda.cliente.0.nome }}</p>
+				</div>
+				<div class="d-flex">
+					<p>Nif: </p>
+					<p>{{ encomenda.cliente.0.nif }}</p>
+				</div>
+				<div class="d-flex">
+					<p>Email: </p>
+					<p>{{ encomenda.cliente.0.email }}</p>
+				</div>
+			</div>
+		</div>
+		
+        <div class="mt-4">
+            <h3>Equipamentos Encomendados</h3>
+            {% for equipamento in encomenda.detalhe_encomenda_cliente %}
+                <div class="mt-3">
+                    <div class="d-flex">
+                        <p>ID: </p>
+                        <p>{{ equipamento.equipamento.0.id }}</p>
+                    </div>
+                    <div class="d-flex">
+                        <p>Tipo: </p>
+                        <p>{{ equipamento.equipamento.0.tipo_equipamento.0.tipo }}</p>
+                    </div>
+                    <div class="d-flex">
+                        <p>Quantidade de Equipamentos Encomendados: </p>
+                        <p>{{ equipamento.quantidade }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+		</div>
+    </section>
+</main>
+{% endblock %}

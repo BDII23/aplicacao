@@ -20,25 +20,3 @@ from .vistas.clientes_remessas_views import *
 
 def pagina_inicial(request):
     return render(request, 'index.html')    
-
-def compras_historico_listar(request):
-    try:
-        compras = readjson_encomenda_cliente()
-        print("Detalhes de compras de cliente : %s", compras)
-
-        return render(request, 'compras/historicocompras.html', {'compras': compras})
-    
-    except Exception as e:
-        return HttpResponse(e)
-    
-
-# Equipamentos #
-    
-
-
-
-    
-    
-     
-    
-    

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}Listar | Encomendas do Fornecedor{% endblock %}
+{% block header %}Listar Encomendas do Fornecedor{% endblock %}
+{% block content %}
+
+
+  <main class="container">
+    <section>
+        <div class="d-flex">
+            <p>ID: </p>
+            <p>{{ encomenda.id }}</p>
+        </div>
+        <div class="d-flex">
+            <p>Data Criação: </p>
+            <p>{{ encomenda.data_criacao }}</p>
+        </div>
+		<div class="d-flex">
+            <p>Estado: </p>
+            <p>{{ encomenda.estado_encomenda.0.estado }}</p>
+        </div>
+
+		<div class="mt-4">
+            <h4>Fornecedor</h4>
+			<div class="mt-3">
+				<div class="d-flex">
+					<p>ID: </p>
+					<p>{{ encomenda.fornecedor.0.id }}</p>
+				</div>
+				<div class="d-flex">
+					<p>Data Criação: </p>
+					<p>{{ encomenda.fornecedor.0.data_criacao }}</p>
+				</div>
+				<div class="d-flex">
+					<p>nome: </p>
+					<p>{{ encomenda.fornecedor.0.nome }}</p>
+				</div>
+				<div class="d-flex">
+					<p>Nif: </p>
+					<p>{{ encomenda.fornecedor.0.nif }}</p>
+				</div>
+				<div class="d-flex">
+					<p>Email: </p>
+					<p>{{ encomenda.fornecedor.0.email }}</p>
+				</div>
+				<div class="d-flex">
+					<p>Telefone: </p>
+					<p>{{ encomenda.fornecedor.0.telefone }}</p>
+				</div>
+				<div class="d-flex">
+					<p>Endereço: </p>
+					<p>{{ encomenda.fornecedor.0.endereco }}</p>
+				</div>
+			</div>
+		</div>
+		
+        <div class="mt-4">
+            <h3>Componentes Encomendados</h3>
+            {% for componente in encomenda.detalhe_encomenda_fornecedor %}
+                <div class="mt-3">
+                    <div class="d-flex">
+                        <p>ID: </p>
+                        <p>{{ componente.componente.0.id }}</p>
+                    </div>
+                    <div class="d-flex">
+                        <p>Descrição: </p>
+                        <p>{{ componente.componente.0.descricao }}</p>
+                    </div>
+                    <div class="d-flex">
+                        <p>Tipo: </p>
+                        <p>{{ componente.componente.0.tipo_componente.0.tipo }}</p>
+                    </div>
+                    <div class="d-flex">
+                        <p>Quantidade de Componente Encomendados: </p>
+                        <p>{{ componente.quantidade }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+		</div>
+    </section>
+</main>
+{% endblock %}
