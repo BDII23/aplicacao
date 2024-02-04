@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
-{% block title %}Listar | Ficha Produção{% endblock %}
-{% block header %}Listar Ficha Produção{% endblock %}
+{% block title %}Listar | Remessas do Clientes{% endblock %}
+{% block header %}Listar Remessas do Clientes{% endblock %}
 {% block content %}
 
 
   <main class="container">
     <section class="row mb-4">
       <div class="col-md-12">
-        <a href="/fichaproducao/registar">
+        <a href="/clientes/remessas/registar">
           <button type="button" class="btn btn-primary">Adicionar</button>
         </a>
       </div>
@@ -18,24 +18,23 @@
           <tr>
             <th>ID</th>
             <th>Data Criação</th>
-            <th>Descrição</th>
-            <th>Quantidade Equipamentos</th>
-            <th>Tipo Mão Obra</th>
-            <th>Horas</th>
-            <th>Detalhes</th>
+            <th>Data Envio</th>
+            <th>Data Entrega</th>
+            <th>Endereço Origem</th>
+            <th>Endereço Chegada</th>
           </tr>
         </thead>
         <tbody>
-          {% for ficha in ficha_producao %}
+          {% for remessa in guia_remessa %}
           <tr>
-            <td>{{ ficha.id }}</td>
-            <td>{{ ficha.data_criacao }}</td>
-            <td>{{ ficha.descricao }}</td>
-            <td>{{ ficha.quantidade_equipamentos }}</td>
-            <td>{{ ficha.tipo_mao_obra.0.tipo }} ({{ ficha.tipo_mao_obra.0.custo }}/h)</td>
-            <td>{{ ficha.horas }} horas</td>
+            <td>{{ remessa.id }}</td>
+            <td>{{ remessa.data_criacao }}</td>
+            <td>{{ remessa.data_envio }}</td>
+            <td>{{ remessa.data_entrega }}</td>
+            <td>{{ remessa.endereco_origem }}</td>
+            <td>{{ remessa.endereco_chegada }}</td>
             <td>
-              <a href="{% url 'fichaproducoes_listar_id' id=ficha.id %}">
+              <a href="{% url 'clientes_remessas_listar_id' id=remessa.id %}">
                 <button type="submit" class="btn btn-secondary">
                   <i class="fas fa-plus"></i>
                 </button>
@@ -45,7 +44,7 @@
               <td>{{ detalhe.componente.0 }}</td>
             {% endfor %}-->
             <td>
-              <a href="{% url 'fichaproducoes_atualizar' id=ficha.id %}">
+              <a href="{% url 'clientes_remessas_atualizar' id=remessa.id %}">
                 <button type="submit" class="btn btn-secondary">
                   <i class="fas fa-pen"></i>
                 </button>

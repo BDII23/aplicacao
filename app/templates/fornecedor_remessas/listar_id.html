@@ -27,7 +27,7 @@
             <p>{{ remessa.endereco_chegada }}</p>
         </div>
         <div class="mt-4">
-            <h3>Componentes Utilizados</h3>
+            <h3>Componentes</h3>
             {% for detalhe in remessa.detalhe_remessa_fornecedor %}
                 <div class="mt-3">
                     <div class="d-flex">
@@ -43,8 +43,12 @@
                         <p>{{ detalhe.detalhe_encomenda_fornecedor.0.componente.0.tipo_componente.0.tipo }}</p>
                     </div>
                     <div class="d-flex">
-                        <p>Quantidade Componente: </p>
-                        <p>{{ detalhe.quantidade }}</p>
+                        <p>Quantidade Encomendados: </p>
+                        <p>{{ detalhe.detalhe_encomenda_fornecedor.0.quantidade }}</p>
+                    </div>
+					<div class="d-flex">
+                        <p>Custo Unidade: </p>
+                        <p>{{ detalhe.detalhe_encomenda_fornecedor.0.custo_entidade }}</p>
                     </div>
                 </div>
             {% endfor %}
