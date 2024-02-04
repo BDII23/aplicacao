@@ -38,18 +38,28 @@ urlpatterns = [
     path('fichaproducao/registar', views.fichaproducoes_registar, name='fichaproducoes_registar'),
     path('fichaproducao/atualizar/<int:id>', views.fichaproducoes_atualizar, name='fichaproducoes_atualizar'),
     
-    # Encomendas, Remessas, Faturas...
-    path('compras/listar', views.compras_historico_listar, name='historico_compras_listar'),
-    #path('compras/registar', views.compras_historico_listar, name='historico_compras_listar'),
-    #path('compras/atualizar/<int:id>', views.compras_historico_listar, name='historico_compras_listar'),
+    # Encomendas do Fornecedor
+    path('fornecedor/encomendas/listar', views.fornecedores_encomendas_listar, name='fornecedores_encomendas_listar'),
+    path('fornecedor/encomendas/listar/id/<int:id>', views.fornecedores_encomendas_listar_id, name='fornecedores_encomendas_listar_id'),
+    path('fornecedor/encomendas/registar', views.fornecedores_encomendas_registar, name='fornecedores_encomendas_registar'),
+    path('fornecedor/encomendas/atualizar/<int:id>', views.fornecedores_encomendas_atualizar, name='fornecedores_encomendas_atualizar'),
+
+    # Remessas / Faturas do Fornecedor
+    path('fornecedor/remessas/listar', views.fornecedores_remessas_listar, name='fornecedores_remessas_listar'),
+    path('fornecedor/remessas/listar/id/<int:id>', views.fornecedores_remessas_listar_id, name='fornecedores_remessas_listar_id'),
+    path('fornecedor/remessas/registar', views.fornecedores_remessas_registar, name='fornecedores_remessas_registar'),
+    path('fornecedor/remessas/atualizar/<int:id>', views.fornecedores_remessas_atualizar, name='fornecedores_remessas_atualizar'),
+
     
-    # Encomendas, Remessas, Faturas...
-    #path('vendas/listar', views.vendas_listar, name='vendas_listar'),
-    #path('vendas/registar', views.vendas_registar, name='vendas_registar'),
-    #path('vendas/atualizar/<int:id>', views.vendas_atualizar, name='vendas_atualizar'),
-    
-    # Utilizadores, Clientes, Fornecedores
-    #path('colaboradores/listar', views.colaboradores_listar, name='colaboradores_listar'),
-    #path('colaboradores/registar', views.colaboradores_registar, name='colaboradores_registar'),
-    #path('colaboradores/atualizar/<int:id>', views.colaboradores_atualizar, name='colaboradores_atualizar'),
+    # Encomendas do Fornecedor
+    path('clientes/encomendas/listar', views.clientes_encomendas_listar, name='clientes_encomendas_listar'),
+    path('clientes/encomendas/listar/id/<int:id>', views.clientes_encomendas_listar_id, name='clientes_encomendas_listar_id'),
+    path('clientes/encomendas/registar', views.clientes_encomendas_registar, name='clientes_encomendas_registar'),
+    path('clientes/encomendas/atualizar/<int:id>', views.clientes_encomendas_atualizar, name='clientes_encomendas_atualizar'),
+
+    # Remessas / Faturas do Fornecedor
+    path('clientes/remessas/listar', views.clientes_remessas_listar, name='clientes_remessas_listar'),
+    path('clientes/remessas/listar/id/<int:id>', views.clientes_remessas_listar_id, name='clientes_remessas_listar_id'),
+    path('clientes/remessas/registar', views.clientes_remessas_registar, name='clientes_remessas_registar'),
+    path('clientes/remessas/atualizar/<int:id>', views.clientes_remessas_atualizar, name='clientes_remessas_atualizar'),
 ]
