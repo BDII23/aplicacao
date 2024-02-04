@@ -1,5 +1,5 @@
 from .db_manager import *
-from ..utils import listToJson
+from ..utils import listToJson, getOnlyElementString
 
 def delete_guia_remessa_fornecedor(p_id):
     with get_pg_cursor() as cursor:
@@ -25,3 +25,9 @@ def readjson_guia_remessa_fornecedor():
     with get_pg_cursor() as cursor:
         cursor.callproc('readjson_guia_remessa_fornecedor')
         return listToJson(cursor.fetchall())
+    
+def custo_total_guia_remessa_fornecedor(p_id):
+    with get_pg_cursor() as cursor:
+        cursor.execute('SELECT * FROM custo_total_guia_remessa_fornecedor(%s)', [p_id])
+        get_pg_connection().commit()
+        return getOnlyElementString(str(cursor.fetchone()))

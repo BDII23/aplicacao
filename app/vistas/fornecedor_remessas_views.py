@@ -14,7 +14,9 @@ def fornecedores_remessas_listar(request):
 def fornecedores_remessas_listar_id(request, id):
     try:
         remessa = readone_guia_remessa_fornecedor(id)
-        return render(request, 'fornecedor_remessas/listar_id.html', {'remessa': remessa})
+        custo_total = custo_total_guia_remessa_fornecedor(id)
+        print(custo_total)
+        return render(request, 'fornecedor_remessas/listar_id.html', {'remessa': remessa, 'custo_total': custo_total})
     except Exception as e:
         return HttpResponse(e)
 

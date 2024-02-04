@@ -33,3 +33,20 @@ def getOnlyElement(string):
 	except (SyntaxError, ValueError) as e:
 		print(f"Error: {e}")
 		return ""
+
+def getOnlyElementString(string):
+	try:
+		tuple_value = ast.literal_eval(string)
+		if isinstance(tuple_value, tuple) and len(tuple_value) == 1:
+			extracted_value = tuple_value[0]
+			if isinstance(extracted_value, str):
+				return extracted_value
+			else:
+				print("Tuple element is not an integer.")
+				return ""
+		else:
+			print("Invalid tuple format.")
+			return ""
+	except (SyntaxError, ValueError) as e:
+		print(f"Error: {e}")
+		return ""
