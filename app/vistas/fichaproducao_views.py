@@ -8,6 +8,7 @@ from ..database.equipamento import *
 from ..database.mg_equipamento_producao import *
 from ..user import *
 from ..forms import *
+from ..utils import corrigir_json
 
 def fichaproducoes_listar(request):
     try:
@@ -69,6 +70,14 @@ def fichaproducoes_atualizar(request, id):
             ficha_producao = readone_ficha_producao(id)
             componente_selected_arr = make_array_of_componentes_ids(ficha_producao)
             equipamento_producao = readone_equipamento_producao(ficha_producao['equipamento'][0]['id'])
+            
+            aux_atributo = ""
+            
+            if equipamento_producao is None:
+                aux_atributo = ""
+            else:
+                aux_atributo = corrigir_json(equipamento_producao['atributo'])
+            
             form.preencher_form({
                 'quantidade': ficha_producao['quantidade_equipamentos'],
                 'tipo_mao_obra': ficha_producao['tipo_mao_obra_id'],
@@ -76,7 +85,7 @@ def fichaproducoes_atualizar(request, id):
                 'descricao': ficha_producao['descricao'],
                 'equipamento': ficha_producao['equipamento'][0]['tipo_id'],
                 'componentes': componente_selected_arr,
-    			'atributos_equipamento': equipamento_producao['atributo'] if 'atributo' in equipamento_producao and equipamento_producao['atributo'] is not None else ""
+    			'atributos_equipamento': aux_atributo
             })
         return render(request, 'ficha_producao/atualizar.html', {'form': form})
 

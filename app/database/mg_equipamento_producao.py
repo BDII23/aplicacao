@@ -23,7 +23,8 @@ def update_equipamento_producao(equipamento_id, atributo):
     collection = get_mg_collection('equipamento_producao')
     result = collection.update_one(
         {"equipamento_id": equipamento_id},
-        {"$set": {"atributo": atributo}}
+        {"$set": {"atributo": atributo}},
+        upsert=True
     )
     return result.modified_count
 

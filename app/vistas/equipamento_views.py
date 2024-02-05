@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from ..database.equipamento import *
 from ..database.mg_equipamento_producao import *
 from ..forms import *
+from ..utils import corrigir_json
 
 def equipamentos_listar(request):
     try:
@@ -47,9 +48,19 @@ def equipamentos_atualizar(request, id):
             form = FormEquipamentos()
             equipamento = readone_equipamento(id)
             atributos = readone_equipamento_producao(id)
+            
+            print(atributos)
+            
+            aux_atributo = ""
+            
+            if atributos is None:
+                aux_atributo = ""
+            else:
+                aux_atributo = corrigir_json(atributos['atributo'])
+                
             form.preencher_form({
                 'tipo_equipamento': equipamento['tipo_id'],
-                'atributos_equipamento': atributos['atributo']
+                'atributos_equipamento': aux_atributo
             })
         return render(request, 'fornecedores/atualizar.html', {'form': form})
 
