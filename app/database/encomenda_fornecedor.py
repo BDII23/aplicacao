@@ -6,14 +6,14 @@ def delete_encomenda_fornecedor(in_id):
         cursor.execute('CALL delete_encomenda_fornecedor(%s)', [in_id])
         get_pg_connection().commit()
 
-def create_encomenda_fornecedor(in_estado_id, in_fornecedor_id, in_fatura_id):
+def create_encomenda_fornecedor(in_componentes, in_fornecedor_id):
     with get_pg_cursor() as cursor:
-        cursor.execute('CALL create_encomenda_fornecedor(%s, %s, %s)', [in_estado_id, in_fornecedor_id, in_fatura_id])
+        cursor.execute('CALL create_encomenda_fornecedor(%s, %s)', [list(map(int, in_componentes)), int(in_fornecedor_id)])
         get_pg_connection().commit()
         
-def update_encomenda_fornecedor(in_id, in_estado_id, in_fornecedor_id, in_fatura_id):
+def update_encomenda_fornecedor(in_id, in_componentes, in_fornecedor_id):
     with get_pg_cursor() as cursor:
-        cursor.execute('CALL update_encomenda_fornecedor(%s, %s, %s, %s)', [in_id, in_estado_id, in_fornecedor_id, in_fatura_id])
+        cursor.execute('CALL update_encomenda_fornecedor(%s, %s, %s)', [in_id, list(map(int, in_componentes)), int(in_fornecedor_id)])
         get_pg_connection().commit()
 
 def readone_encomenda_fornecedor(in_id):

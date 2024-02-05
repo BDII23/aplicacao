@@ -4,3 +4,7 @@ from .formularios.fornecedor_form import *
 from .formularios.utilizador_form import *
 from .formularios.clientes_form import *
 from .formularios.equipamentos_form import *
+from .formularios.fornecedor_encomenda_form import *
+from .formularios.fornecedor_remessa_form import *
+from .formularios.cliente_encomenda_form import *
+from .formularios.cliente_remessa_form import *

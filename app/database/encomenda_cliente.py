@@ -6,14 +6,14 @@ def delete_encomenda_cliente(p_id):
         cursor.execute('CALL delete_encomenda_cliente(%s)', [p_id])
         get_pg_connection().commit()
 
-def create_encomenda_cliente(p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id):
+def create_encomenda_cliente(in_equipamentos, in_cliente_id):
     with get_pg_cursor() as cursor:
-        cursor.execute('CALL create_encomenda_cliente(%s, %s, %s, %s)', [p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id])
+        cursor.execute('CALL create_encomenda_cliente(%s, %s)', [list(map(int, in_equipamentos)), int(in_cliente_id)])
         get_pg_connection().commit()
         
-def update_encomenda_cliente(p_id, p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id):
+def update_encomenda_cliente(in_id, in_equipamentos, in_cliente_id):
     with get_pg_cursor() as cursor:
-        cursor.execute('CALL update_encomenda_cliente(%s, %s, %s, %s, %s)', [p_id, p_data_criacao, p_estado_id, p_cliente_id, p_fatura_id])
+        cursor.execute('CALL update_encomenda_cliente(%s, %s, %s)', [in_id, list(map(int, in_equipamentos)), int(in_cliente_id)])
         get_pg_connection().commit()
 
 def readone_encomenda_cliente(p_id):
