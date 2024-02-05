@@ -21,4 +21,9 @@ class FormClienteRemessa(forms.Form):
 
         
     def preencher_form(self, dados_form):
-        self.fields['componentes'].initial = dados_form['componentes']
+        self.fields['equipamentos'].initial = dados_form['equipamentos']
+        self.fields['data_envio'].initial = dados_form['data_envio']
+        self.fields['data_entrega'].initial = dados_form['data_entrega']
+        self.fields['endereco_origem'].initial = dados_form['endereco_origem']
+        self.fields['endereco_chegada'].initial = dados_form['endereco_chegada']
+        self.fields['fatura_descricao'].initial = dados_form['fatura_descricao']
