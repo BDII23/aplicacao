@@ -1,7 +1,12 @@
+from ..database.encomenda_fornecedor import *
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from ..database.encomenda_fornecedor import *
+from ..database.ficha_producao import *
+from ..database.mg_equipamento_producao import *
+from .fichaproducao_views import make_array_of_componentes_ids
+from ..user import *
 from ..forms import *
+
 
 def fornecedores_encomendas_listar(request):
     try:
