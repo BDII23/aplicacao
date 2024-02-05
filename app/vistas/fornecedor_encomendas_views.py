@@ -3,6 +3,35 @@ from django.http import HttpResponse
 from ..user import *
 from ..forms import *
 from ..database.encomenda_fornecedor import *
+from ..utils import tojson, corrigir_json
+
+
+
+def fornecedores_encomendas_importar(request):
+    try:
+        if request.method == 'POST':
+            form = FormFornecedorEncomendaImportar(request.POST)
+            if form.is_valid():
+                _json = form.cleaned_data['json']
+                importar_encomenda_fornecedor(_json)
+                return redirect("/")
+        else:
+            form = FormFornecedorEncomendaImportar()
+        return render(request, 'fornecedor_encomendas/importar.html', {'form': form})
+
+    except Exception as e:
+        return HttpResponse(e)
+
+
+def fornecedores_encomendas_exportar(request):
+    try:
+        form = FormFornecedorEncomendaImportar()
+        exporte = exportar_encomenda_fornecedor()
+        form.preencher(corrigir_json(exporte))
+        return render(request, 'fornecedor_encomendas/exportar.html', {'form': form})
+
+    except Exception as e:
+        return HttpResponse(e)
 
 
 def fornecedores_encomendas_listar(request):

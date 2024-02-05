@@ -23,3 +23,24 @@ class FormClienteEncomenda(forms.Form):
     def preencher_form(self, dados_form):
         self.fields['equipamentos'].initial = dados_form['equipamentos']
         self.fields['clientes'].initial = dados_form['clientes']
+        
+
+class FormClienteEncomendaImportar(forms.Form):
+    json = forms.CharField(label='JSON', widget=forms.Textarea(attrs={'class': 'form-control'}))
+    
+    def __init__(self, *args, **kwargs):
+        super(FormClienteEncomendaImportar, self).__init__(*args, **kwargs)
+        self.preencher_default()
+
+    def clean_jsonfield(self):
+        jdata = self.cleaned_data['json']
+        try:
+            return json.loads(jdata)
+        except:
+            raise forms.ValidationError("Dados inválidos")
+
+    def preencher_default(self):
+        self.fields['json'].initial = "[\n\t{\n\n\t}\n]"
+    
+    def preencher(self, json):
+        self.fields['json'].initial = json

@@ -43,6 +43,8 @@ urlpatterns = [
     path('fornecedor/encomendas/listar/id/<int:id>', views.fornecedores_encomendas_listar_id, name='fornecedores_encomendas_listar_id'),
     path('fornecedor/encomendas/registar', views.fornecedores_encomendas_registar, name='fornecedores_encomendas_registar'),
     path('fornecedor/encomendas/atualizar/<int:id>', views.fornecedores_encomendas_atualizar, name='fornecedores_encomendas_atualizar'),
+    path('fornecedor/encomendas/importar', views.fornecedores_encomendas_importar, name='fornecedores_encomendas_importar'),
+    path('fornecedor/encomendas/exportar', views.fornecedores_encomendas_exportar, name='fornecedores_encomendas_exportar'),
 
     # Remessas / Faturas do Fornecedor
     path('fornecedor/remessas/listar', views.fornecedores_remessas_listar, name='fornecedores_remessas_listar'),
@@ -55,6 +57,8 @@ urlpatterns = [
     path('clientes/encomendas/listar/id/<int:id>', views.clientes_encomendas_listar_id, name='clientes_encomendas_listar_id'),
     path('clientes/encomendas/registar', views.clientes_encomendas_registar, name='clientes_encomendas_registar'),
     path('clientes/encomendas/atualizar/<int:id>', views.clientes_encomendas_atualizar, name='clientes_encomendas_atualizar'),
+    path('clientes/encomendas/importar', views.clientes_encomendas_importar, name='clientes_encomendas_importar'),
+    path('clientes/encomendas/exportar', views.clientes_encomendas_exportar, name='clientes_encomendas_exportar'),
 
     # Remessas / Faturas do Fornecedor
     path('clientes/remessas/listar', views.clientes_remessas_listar, name='clientes_remessas_listar'),

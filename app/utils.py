@@ -1,5 +1,6 @@
 from datetime import datetime
 import ast
+import json
 
 def listToJson(json):
     return json[0][0]
@@ -50,3 +51,15 @@ def getOnlyElementString(string):
 	except (SyntaxError, ValueError) as e:
 		print(f"Error: {e}")
 		return ""
+
+def corrigir_json(lista):
+    return json.dumps(lista)
+
+def tojson(json):
+	try:
+		json_corrigido = corrigir_json(json)
+		print(json_corrigido)
+		json_completo = json.loads(json_corrigido)
+		print(json_completo)
+	except:
+		return "Ocorreu algum erro"

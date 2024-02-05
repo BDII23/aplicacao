@@ -10,7 +10,17 @@ def create_encomenda_cliente(in_equipamentos, in_cliente_id):
     with get_pg_cursor() as cursor:
         cursor.execute('CALL create_encomenda_cliente(%s, %s)', [list(map(int, in_equipamentos)), int(in_cliente_id)])
         get_pg_connection().commit()
-        
+
+def importar_encomenda_cliente(in_json):
+    with get_pg_cursor() as cursor:
+        cursor.execute('CALL importar_encomenda_cliente(%s)', [in_json])
+        get_pg_connection().commit()
+
+def exportar_encomenda_cliente():
+    with get_pg_cursor() as cursor:
+        cursor.callproc('exportar_encomenda_cliente')
+        return listToJson(cursor.fetchall())
+
 def update_encomenda_cliente(in_id, in_equipamentos, in_cliente_id):
     with get_pg_cursor() as cursor:
         cursor.execute('CALL update_encomenda_cliente(%s, %s, %s)', [in_id, list(map(int, in_equipamentos)), int(in_cliente_id)])

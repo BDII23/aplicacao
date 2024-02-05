@@ -10,6 +10,16 @@ def create_encomenda_fornecedor(in_componentes, in_fornecedor_id):
     with get_pg_cursor() as cursor:
         cursor.execute('CALL create_encomenda_fornecedor(%s, %s)', [list(map(int, in_componentes)), int(in_fornecedor_id)])
         get_pg_connection().commit()
+
+def importar_encomenda_fornecedor(in_json):
+    with get_pg_cursor() as cursor:
+        cursor.execute('CALL importar_encomenda_fornecedor(%s)', [in_json])
+        get_pg_connection().commit()
+
+def exportar_encomenda_fornecedor():
+    with get_pg_cursor() as cursor:
+        cursor.callproc('exportar_encomenda_fornecedor')
+        return listToJson(cursor.fetchall())
         
 def update_encomenda_fornecedor(in_id, in_componentes, in_fornecedor_id):
     with get_pg_cursor() as cursor:

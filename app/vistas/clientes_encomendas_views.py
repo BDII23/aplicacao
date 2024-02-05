@@ -6,6 +6,34 @@ from ..database.mg_equipamento_producao import *
 from .fichaproducao_views import make_array_of_componentes_ids
 from ..user import *
 from ..forms import *
+from ..utils import corrigir_json
+
+
+def clientes_encomendas_importar(request):
+    try:
+        if request.method == 'POST':
+            form = FormClienteEncomendaImportar(request.POST)
+            if form.is_valid():
+                _json = form.cleaned_data['json']
+                importar_encomenda_cliente(_json)
+                return redirect("/")
+        else:
+            form = FormClienteEncomendaImportar()
+        return render(request, 'cliente_encomendas/importar.html', {'form': form})
+
+    except Exception as e:
+        return HttpResponse(e)
+
+
+def clientes_encomendas_exportar(request):
+    try:
+        form = FormClienteEncomendaImportar()
+        exporte = exportar_encomenda_cliente()
+        form.preencher(corrigir_json(exporte))
+        return render(request, 'cliente_encomendas/exportar.html', {'form': form})
+
+    except Exception as e:
+        return HttpResponse(e)
 
 
 def clientes_encomendas_listar(request):
