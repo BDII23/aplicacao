@@ -1,8 +1,8 @@
-from ..database.encomenda_fornecedor import *
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from ..user import *
 from ..forms import *
+from ..database.encomenda_fornecedor import *
 
 
 def fornecedores_encomendas_listar(request):
